@@ -26,7 +26,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.scss$/,
@@ -37,7 +37,7 @@ module.exports = {
         }, {
           loader: "sass-loader" // compiles Sass to CSS
         }]
-        },
+      },
       {
         test: /\.js$/,
         loader: 'babel-loader',
@@ -65,6 +65,13 @@ module.exports = {
   performance: {
     hints: false
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      "window.jQuery": "jquery"
+    })
+  ],
   devtool: '#eval-source-map'
 }
 
