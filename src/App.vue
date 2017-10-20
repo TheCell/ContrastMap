@@ -1,6 +1,5 @@
 <template>
 	<div id="app">
-		<img src="./assets/logo.png">
 		<h1>{{ msg }}</h1>
 		<h2>Essential Links</h2>
 		<div class="row">
@@ -14,22 +13,51 @@
 </template>
 
 <script>
-export default
-{
+var mapStyleJson = "";
+
+// set map style
+
+</script>
+
+
+<script>
+export default {
   name: "app",
+  mapStyleJson: "",
+
   data() {
     return {
       msg: "Welcome to Your Vue.js App"
     };
   },
-  mounted: function()
-  {
+  mounted: function() {
     const element = document.getElementById("map");
     const options = {
-    	zoom: 14,
-    	center: new google.maps.LatLng(47.071467, 8.277621)
+      zoom: 17,
+      center: new google.maps.LatLng(47.071467, 8.277621),
+      styles: this.mapStyleJson,
+      disableDefaultUI: true
     };
-    this.map = new google.maps.Map(element, options);
+
+    contentfulClient.getEntries({
+      content_type: "mapstyle"
+    }).then(entry => {
+      if (entry.items.length > -1)
+      {
+        this.mapStyleJson = entry.items[entry.items.length -1];
+        console.log(this.mapStyleJson.fields);
+        this.mapStyleJson = this.mapStyleJson.fields;
+        
+        options.styles = this.mapStyleJson["mapstyle"];
+        console.log(options);
+        this.map = new google.maps.Map(element, options);
+      }
+      else
+      {
+        console.warn("Keine Mapstyles im CMS");
+        this.map = new google.maps.Map(element, options);
+      }
+    });
   }
 };
 </script>

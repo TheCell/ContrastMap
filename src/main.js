@@ -19,6 +19,18 @@ contentfulClient.getEntries()
   .then((response) => console.log(response.items))
   .catch(console.error);
 
+// display markers
+/*
+contentfulClient.getAsset("mapstyle")
+  .then(entry => {
+    let marker = new google.maps.Marker({
+      position: { lat: 47.070978, lng: 8.282165 },
+      icon: "https:" + entry.fields.file.url,
+      map: this.map
+    });
+  });
+*/
+
 new Vue({
   el: '#app',
   render: h => h(App)
