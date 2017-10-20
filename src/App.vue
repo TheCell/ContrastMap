@@ -1,11 +1,14 @@
 <template>
 	<div id="app">
-		<h1>{{ msg }}</h1>
+		<!--
+    <h1>{{ msg }}</h1>
 		<h2>Essential Links</h2>
 		<div class="row">
 			<div class="large-4 columns">content</div>
 			<div class="large-8 columns">content</div>
 		</div>
+    -->
+
 
 		<div id="map">
 		</div>
@@ -35,7 +38,9 @@ export default {
     const options = {
       zoom: 17,
       center: new google.maps.LatLng(47.071467, 8.277621),
+      heading: 90,
       styles: this.mapStyleJson,
+      scrollwheel: false,
       disableDefaultUI: true
     };
 
@@ -51,6 +56,7 @@ export default {
         options.styles = this.mapStyleJson["mapstyle"];
         console.log(options);
         this.map = new google.maps.Map(element, options);
+        console.log(this.map.getHeading());
       }
       else
       {
@@ -63,6 +69,7 @@ export default {
 </script>
 
 <style lang="scss">
+/*
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -90,4 +97,5 @@ li {
 a {
   color: #42b983;
 }
+*/
 </style>
