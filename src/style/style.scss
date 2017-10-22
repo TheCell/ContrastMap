@@ -1,5 +1,10 @@
 @import '../../node_modules/snazzy-info-window/dist/snazzy-info-window.scss';
 
+$conceptRed: #E42313;
+$conceptGray: #C3C3C3;
+$conceptBlack: #555353;
+$conceptWhite: #FFFFFF;
+
 #app
 {
     margin-top: 0px;
@@ -7,25 +12,58 @@
 
 body
 {
-    background-color: white;
-}
-
-.row
-{
-    background: rgb(157, 243, 178);
-    margin-bottom: 1rem;
-}
-
-.columns
-{
-    background:rgb(243, 157, 222);
-    border: 5px solid black;
+    background-color: $conceptWhite;
 }
 
 #map
 {
 	width: 100%;
 	height: 100vh;
+}
+
+a:link
+{
+    color: $conceptWhite;
+    text-decoration: none;
+    background-color: $conceptBlack;
+}
+
+a:visited
+{
+    background-color: $conceptBlack;
+    color: $conceptWhite;
+}
+
+a:hover
+{
+    background-color: $conceptBlack;
+    color: $conceptRed;
+}
+
+a:active
+{
+    color: $conceptWhite;
+    background-color: $conceptGray;
+}
+
+/* Navigation */
+#mainNavigation
+{
+    position: absolute;
+    top: 30px;
+    left: -10px;
+    z-index: 2;
+    transform: rotate(-7deg);
+    margin-left: 20px;
+}
+
+#mainNavigation > a
+{
+    position: relative;
+    width: 200px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 /* begin bastel bastel mit markern */
@@ -95,8 +133,8 @@ body
 
 .switchButton
 {
-    background-color: #555353;
-    color: white;
+    background-color: $conceptBlack;
+    color: $conceptWhite;
     position: absolute;
     left: 0;
     margin-top: 240px;

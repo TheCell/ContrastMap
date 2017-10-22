@@ -8,7 +8,10 @@
 			<div class="large-8 columns">content</div>
 		</div>
 		-->
-
+		 <nav id="mainNavigation">
+			<a href="">Mehr zum Projekt</a>
+			<a href="">Digitales Weben</a>
+		</nav> 
 
 		<div id="map">
 		</div>
@@ -62,8 +65,8 @@ export default {
 
 		// get and display all markers
 		const cms_markers = [];
-		const markerBackground = "";
-		const signBackground = "";
+		const markerBackground = "//images.contentful.com/ssruiqlv9y3c/U7gODS2A004gmsKogm2mS/668591e3cf123b2bab922144cb891c7e/InfoboxBackground.png";
+		const signBackground = "//images.contentful.com/ssruiqlv9y3c/5iAPEKxUWIqWG0WiYgUgcw/337cba04110c36db523952e76b1ed78c/placeholderSign.png";
 
 		contentfulClient.getEntries(
 		{
@@ -72,9 +75,10 @@ export default {
 		{
 			entries.items.forEach((item, index) =>
 			{
-				this.markerBackground = item.fields.markerBackground ? item.fields.markerBackground.fields.file.url : "";
-				this.signBackground = item.fields.signBackground ? item.fields.signBackground.fields.file.url : "";
-				//console.log(item.fields.signBackground.fields.file.url);
+				this.markerBackground = item.fields.markerBackground ? item.fields.markerBackground.fields.file.url : this.markerBackground;
+				this.signBackground = item.fields.signBackground ? item.fields.signBackground.fields.file.url : this.signBackground;
+				console.log("got: ", item.fields.markerBackground.fields.file.url);
+				console.log("wrote into obj: " , this.markerBackground);
 			});
 		});
 
@@ -108,6 +112,7 @@ export default {
 				*/
 
 				//create marker
+				console.log("lat: " + item.fields.markerPosition.lat + " lang: " + item.fields.markerPosition.lon);
 				let marker = new google.maps.Marker(
 				{
 					position: { lat: item.fields.markerPosition.lat, lng: item.fields.markerPosition.lon },
@@ -171,6 +176,7 @@ export default {
 				*/
 
 				cms_markers.push(marker);
+				console.log("added marker");
 			});
 		});
 	}
