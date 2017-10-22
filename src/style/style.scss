@@ -53,7 +53,7 @@ a:active
     top: 30px;
     left: -10px;
     z-index: 2;
-    transform: rotate(-7deg);
+    transform: rotate(-7deg) skewX(-8deg);
     margin-left: 20px;
 }
 
@@ -139,7 +139,7 @@ a:active
     left: 0;
     margin-top: 240px;
     padding: 5px;
-    transform: rotate(-7deg);
+    transform: rotate(-7deg) skewX(-8deg);
     padding-left: 10px;
     padding-right: 10px;
     margin-left: 3px;
