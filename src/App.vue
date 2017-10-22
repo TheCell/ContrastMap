@@ -54,6 +54,7 @@ export default {
 				options.styles = this.mapStyleJson["mapstyle"];
 				// console.log(options);
 				this.map = new google.maps.Map(element, options);
+				window.map = this.map;
 				// console.log(this.map.getHeading());
 			}
 			else
@@ -61,6 +62,35 @@ export default {
 				console.warn("Keine Mapstyles im CMS");
 				this.map = new google.maps.Map(element, options);
 			}
+		});
+
+		contentfulClient.getEntries(
+		{
+			content_type: "kmlLayers"
+		}).then(entries =>
+		{
+			//console.log("allkmlEntries", entries);
+
+			entries.items.forEach((item, index) =>
+			{
+				let kmlurl = "";
+
+				kmlurl = item.fields.kmlUrlAsJson ? item.fields.kmlUrlAsJson.url : kmlurl;
+				kmlurl = decodeURIComponent(kmlurl);
+				//console.log(kmlurl);
+				//console.log("kmlentries:", item);	
+				//console.log("kmlentries:", item.fields.kmlUrlAsJson.url);	
+				let ctaLayer = new google.maps.KmlLayer({
+					url: kmlurl,
+					map: this.map
+				});
+				let ctaLayerTest = new google.maps.KmlLayer({
+					url: 'https://dev.thecell.eu/contrastmapdata/test.kml',
+					map: this.map
+				});
+
+				console.log("layer added", ctaLayer);
+			});
 		});
 
 		// get and display all markers
@@ -77,8 +107,8 @@ export default {
 			{
 				this.markerBackground = item.fields.markerBackground ? item.fields.markerBackground.fields.file.url : this.markerBackground;
 				this.signBackground = item.fields.signBackground ? item.fields.signBackground.fields.file.url : this.signBackground;
-				console.log("got: ", item.fields.markerBackground.fields.file.url);
-				console.log("wrote into obj: " , this.markerBackground);
+				//console.log("got: ", item.fields.markerBackground.fields.file.url);
+				//console.log("wrote into obj: " , this.markerBackground);
 			});
 		});
 
@@ -112,7 +142,7 @@ export default {
 				*/
 
 				//create marker
-				console.log("lat: " + item.fields.markerPosition.lat + " lang: " + item.fields.markerPosition.lon);
+				//console.log("lat: " + item.fields.markerPosition.lat + " lang: " + item.fields.markerPosition.lon);
 				let marker = new google.maps.Marker(
 				{
 					position: { lat: item.fields.markerPosition.lat, lng: item.fields.markerPosition.lon },
@@ -176,7 +206,7 @@ export default {
 				*/
 
 				cms_markers.push(marker);
-				console.log("added marker");
+				//console.log("added marker");
 			});
 		});
 	}
