@@ -3,6 +3,7 @@ import App from './App.vue'
 import './assets/foundation/js/vendor/what-input.js'
 import './assets/foundation/js/vendor/foundation.js'
 import './assets/foundation/css/foundation.css'
+import './assets/jquery/jquery-3.2.1.min.js'
 
 import { createClient } from 'contentful'
 
@@ -33,5 +34,13 @@ contentfulClient.getAsset("mapstyle")
 
 new Vue({
   el: '#app',
+  methods:
+  {
+    // not in use
+    switchText: function (button)
+    {
+      alert("jo");
+    }
+  },
   render: h => h(App)
 });

@@ -16,14 +16,6 @@
 </template>
 
 <script>
-var mapStyleJson = "";
-
-// set map style
-
-</script>
-
-
-<script>
 import SnazzyInfoWindow from "snazzy-info-window";
 export default {
 	name: "app",
@@ -69,56 +61,101 @@ export default {
 		});
 
 		// get and display all markers
-	const cms_markers = [];
-	contentfulClient.getEntries({
-				content_type: "mapdata"
-			}).then(entries =>
-			{
-				console.log("entries: ",entries);
-				// fuer jeden Eintrag einen Marker und ein Infowindow erstellen
-				entries.items.forEach((item, index) => {
-					// wenn kein Icon definiert ist, den Default verwenden
-					console.log("item: ",item);
-					let icon = item.fields.markerImage ? item.fields.markerImage.fields.file : "";
-
-					if (icon != "")
-					{
-						//console.log("icon: ",icon);
-
-						if (icon.url.charAt(0) == "/")
-						{
-							icon.url = icon.url.substring(2, icon.length);
-						}
-						icon.url = "https://" + icon.url;
-						
-						// console.log("icon: ",icon.url);
-						//icon.size = new google.maps.Size(20, 32)
-					}
-
-					//create marker
-					let marker = new google.maps.Marker(
-						{
-							position: { lat: item.fields.markerPosition.lat, lng: item.fields.markerPosition.lon },
-							icon: icon,
-							map: this.map
-						});
-
-					// create infowindow
-					let cs = `<div>${item.fields.titel}</div>`;
-					let cms_iw = new google.maps.InfoWindow({
-								content: cs
-					});
-
-					// Infowindow oeffenen bei Click auf Marker
-					marker.addListener('click', event => { cms_iw.open(this.map, marker)});
-					cms_markers.push(marker);
-				});
-			});
-
-	infoWindow: new SnazzyInfoWindow(
+		const cms_markers = [];
+		contentfulClient.getEntries(
 		{
-			//marker: marker,
-			content: 'Snazzy!'
+			content_type: "mapdata"
+		}).then(entries =>
+		{
+			//console.log("entries: ",entries);
+			// fuer jeden Eintrag einen Marker und ein Infowindow erstellen
+			entries.items.forEach((item, index) => {
+				// wenn kein Icon definiert ist, den Default verwenden
+				//console.log("item: ",item);
+				let icon = item.fields.markerImage ? item.fields.markerImage.fields.file : "";
+				//console.log("icon: ",icon);
+
+				/*
+				if (icon != "")
+				{
+					//console.log("icon: ",icon);
+
+					if (icon.url.charAt(0) == "/")
+					{
+						icon.url = icon.url.substring(2, icon.length);
+					}
+					icon.url = "https://" + icon.url;
+					
+					// console.log("icon: ",icon.url);
+					//icon.size = new google.maps.Size(20, 32)
+				}
+				*/
+
+				//create marker
+				let marker = new google.maps.Marker(
+				{
+					position: { lat: item.fields.markerPosition.lat, lng: item.fields.markerPosition.lon },
+					icon: icon,
+					map: this.map
+				});
+
+				let signImage = item.fields.signImage ? item.fields.signImage.fields.file.url : './src/assets/placeholderSign.png';
+				let infoNeu = item.fields.infoNeu ? item.fields.infoNeu : "";
+				let infoAlt = item.fields.infoAlt ? item.fields.infoAlt : "";
+				let titel = item.fields.titel ? item.fields.titel : "";
+				let buttonText = item.fields.buttonText ? item.fields.buttonText : "";
+				
+				// '<div class="switchButton" v-on:click="switchText">' +
+				let content =
+				'<div class="markerWrapper">' +
+				'<div class="switchButton" onclick="switchText(this);">' +
+					buttonText +
+				'</div>' +
+				'<div class="signWrapper" style="background-image: url(' + signImage + ')">' +
+				'</div>' +
+				'<div class="contentOuterWrap" style="background-image: url(./src/assets/InfoboxBackground.png);">' +
+					'<div class="mittelDivInnerWrap">' +
+						'<h1 class="titleWrap">' + titel + '</h1>' +
+						'<div class="textWrap">' +
+							'<span class="textOld">' + 
+								infoAlt +
+							'</span>' +
+							'<span class="textNew">' + 
+								infoNeu +
+							'</span>' +
+						'</div>'
+					'</div>' +
+				'</div>' +
+				'</div>';
+				
+				// '<div class="signWrapper" style="background-image: url(' + item.fields.markerImage.file.url + ');">' +
+				/*
+				if (item.fields.signImage)
+				{
+					console.log("signImage:",item.fields.signImage.fields.file.url);
+				}
+				*/
+
+				let infoWindow = new SnazzyInfoWindow(
+				{
+					marker: marker,
+					content: content
+				});
+
+				//infoWindow.open();
+				/*
+				// create infowindow
+				let cs = `<div>${item.fields.titel}</div>`;
+				let cms_iw = new google.maps.InfoWindow({
+							content: cs
+				});
+
+				// Infowindow oeffenen bei Click auf Marker
+				marker.addListener('click', event => { cms_iw.open(this.map, marker)});
+				*/
+
+				cms_markers.push(marker);
+			});
 		});
 	}
 };

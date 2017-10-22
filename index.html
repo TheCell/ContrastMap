@@ -8,5 +8,38 @@
     <div id="app"></div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAINwmGOhdjnlwKEIaQWgf1Yhvwq4dGWqc"></script>
     <script src="/dist/build.js"></script>
+    <script type="text/javascript">
+    function findAncestor (el, cls)
+    {
+      while ((el = el.parentElement) && !el.classList.contains(cls));
+      return el;
+    }
+
+    
+    // implement into vue later, shit has to be done
+    function switchText(element)
+    {
+      //$(".markerWrapper");
+    
+      console.log(element);
+      window.currentButton = element;
+      let markerboxElements = window.currentButton.parentNode.children;
+      /*
+      let contentOuterWrap;
+
+      for (var i = 0; i < markerboxElements.length; i++)
+      {
+        let item = markerboxElements[i];
+        if (item.className == "contentOuterWrap")
+        {
+          contentOuterWrap = item;
+        }
+      }
+      console.log(contentOuterWrap);
+      console.log(findAncestor(contentOuterWrap, "textWrap"));
+     */ 
+    };
+    
+    </script>
   </body>
 </html>
