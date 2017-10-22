@@ -62,6 +62,22 @@ export default {
 
 		// get and display all markers
 		const cms_markers = [];
+		const markerBackground = "";
+		const signBackground = "";
+
+		contentfulClient.getEntries(
+		{
+			content_type: "mapmarkerlook"
+		}).then(entries =>
+		{
+			entries.items.forEach((item, index) =>
+			{
+				this.markerBackground = item.fields.markerBackground ? item.fields.markerBackground.fields.file.url : "";
+				this.signBackground = item.fields.signBackground ? item.fields.signBackground.fields.file.url : "";
+				//console.log(item.fields.signBackground.fields.file.url);
+			});
+		});
+
 		contentfulClient.getEntries(
 		{
 			content_type: "mapdata"
@@ -99,7 +115,7 @@ export default {
 					map: this.map
 				});
 
-				let signImage = item.fields.signImage ? item.fields.signImage.fields.file.url : './src/assets/placeholderSign.png';
+				let signImage = item.fields.signImage ? item.fields.signImage.fields.file.url : this.signBackground;
 				let infoNeu = item.fields.infoNeu ? item.fields.infoNeu : "";
 				let infoAlt = item.fields.infoAlt ? item.fields.infoAlt : "";
 				let titel = item.fields.titel ? item.fields.titel : "";
@@ -113,7 +129,7 @@ export default {
 				'</div>' +
 				'<div class="signWrapper" style="background-image: url(' + signImage + ')">' +
 				'</div>' +
-				'<div class="contentOuterWrap" style="background-image: url(./src/assets/InfoboxBackground.png);">' +
+				'<div class="contentOuterWrap" style="background-image: url(' + this.markerBackground + ');">' +
 					'<div class="mittelDivInnerWrap">' +
 						'<h1 class="titleWrap">' + titel + '</h1>' +
 						'<div class="textWrap">' +
