@@ -1,3 +1,5 @@
+@import '../../node_modules/snazzy-info-window/dist/snazzy-info-window.scss';
+
 #app
 {
     margin-top: 0px;
@@ -5,7 +7,7 @@
 
 body
 {
-    background-color: blue;
+    background-color: white;
 }
 
 .row
