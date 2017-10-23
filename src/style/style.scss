@@ -67,6 +67,43 @@ a:active
 }
 
 /* begin bastel bastel mit markern */
+.si-close-button
+{
+    position: absolute;
+    top: 30px;
+    right: 200px;
+    background-color: $conceptBlack;
+    color: $conceptWhite;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    transform: rotate(-7deg) skewX(-8deg);
+    border-radius: 0px;
+    opacity: 1;
+}
+
+.si-close-button:hover
+{
+    background-color: $conceptBlack;
+    color: $conceptRed;
+    opacity: 1;
+}
+
+.si-close-button:active
+{
+    color: $conceptWhite;
+    background-color: $conceptGray;
+    opacity: 1;
+}
+
+.si-close-button:visited
+{
+    background-color: $conceptBlack;
+    color: $conceptWhite;
+    opacity: 1;
+}
+
 .si-has-border .si-content-wrapper
 {
     border: none;
