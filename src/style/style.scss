@@ -49,8 +49,7 @@ a:active
 /* scrollbar styling */
 ::-webkit-scrollbar
 {
-    background-color: $conceptGray;
-    color: $conceptBlack;
+    background-color: none;
     width: 10px;
 }
 
