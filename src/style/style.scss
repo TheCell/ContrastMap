@@ -46,6 +46,19 @@ a:active
     background-color: $conceptGray;
 }
 
+/* scrollbar styling */
+::-webkit-scrollbar
+{
+    background-color: $conceptGray;
+    color: $conceptBlack;
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb
+{
+    background-color: $conceptBlack;
+}
+
 /* Navigation */
 #mainNavigation
 {
@@ -153,7 +166,7 @@ a:active
 
 .mittelDivInnerWrap
 {
-    width: 77%;
+    width: 77.5%;
     margin-left: 10%;
 }
 
