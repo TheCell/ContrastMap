@@ -93,6 +93,34 @@ export default {
 			});
 		});
 
+		// set map image overlays
+		contentfulClient.getEntries({
+			content_type: "mapImageOverlays"
+		}).then(entries =>
+		{
+			entries.items.forEach((item, index) =>
+			{
+				let overlayImage = item.fields.overlayImage ? item.fields.overlayImage.fields.file.url : "";
+				console.log(item.fields.overlayImage);
+				let TopRightPos = item.fields.topRightPoint;
+				let BottomLeftPos = item.fields.bottomLeftPoint;
+
+				//console.log(TopRightPos);
+
+				let imageBounds =
+				{
+					north: TopRightPos.lat,
+					south: BottomLeftPos.lat,
+					east: TopRightPos.lon,
+					west: BottomLeftPos.lon
+				};
+				
+				let historicalOverlay = new google.maps.GroundOverlay(overlayImage, imageBounds);
+				historicalOverlay.setMap(this.map);
+
+			});
+		});
+
 		// get and display all markers
 		const cms_markers = [];
 		const markerBackground = "//images.contentful.com/ssruiqlv9y3c/U7gODS2A004gmsKogm2mS/668591e3cf123b2bab922144cb891c7e/InfoboxBackground.png";
