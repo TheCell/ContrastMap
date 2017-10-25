@@ -17,12 +17,14 @@
 			<a href="">Digitales Weben</a>
 		</nav> 
 
+		<my-comp v-if="debugTrue" character="wild"></my-comp>
+
 		<ul v-if="debugTrue">
 			<li v-for="item in items">
 				{{item.ort + ' ' + item.kanton}}
 			</li>
 		</ul>
-		
+
 		<div id="map">
 		</div>
 	</div>

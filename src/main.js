@@ -5,6 +5,7 @@ import './assets/foundation/js/vendor/foundation.js'
 import './assets/foundation/css/foundation.css'
 import './assets/jquery/jquery-3.2.1.min.js'
 import testModul from './modules/testmodul.js'
+import myComp from './components/testComp.vue'
 
 import { createClient } from 'contentful'
 
@@ -20,6 +21,8 @@ window.contentfulClient = createClient({
 contentfulClient.getEntries()
   .then((response) => console.log(response.items))
   .catch(console.error);
+
+Vue.component("my-comp", myComp);
 
 // display markers
 /*
