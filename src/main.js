@@ -4,6 +4,7 @@ import './assets/foundation/js/vendor/what-input.js'
 import './assets/foundation/js/vendor/foundation.js'
 import './assets/foundation/css/foundation.css'
 import './assets/jquery/jquery-3.2.1.min.js'
+import testModul from './modules/testmodul.js'
 
 import { createClient } from 'contentful'
 
