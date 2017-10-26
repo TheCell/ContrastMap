@@ -6,6 +6,8 @@ import './assets/foundation/css/foundation.css'
 import './assets/jquery/jquery-3.2.1.min.js'
 import testModul from './modules/testmodul.js'
 import myComp from './components/testComp.vue'
+import markerwindow from './components/markerwindow.vue'
+import VueRouter from 'vue-router'
 
 import { createClient } from 'contentful'
 
@@ -22,7 +24,20 @@ contentfulClient.getEntries()
   .then((response) => console.log(response.items))
   .catch(console.error);
 
+Vue.use(VueRouter);
 Vue.component("my-comp", myComp);
+Vue.component("markerwindow", markerwindow);
+
+const routes = [
+  { path: '/home', component: Vue.component(Vue)},
+  { path: '/markertest', component: Vue.component(markerwindow)}
+]
+
+const router = new VueRouter(
+  {
+    routes
+  }
+)
 
 // display markers
 /*

@@ -3,6 +3,14 @@
 		<h1 v-if="debugTrue">{{ msg }}</h1>
 		<button v-on:click="increment" :disabled="buttonDisabled" v-if="debugTrue">Mein Button</button>
 		<div v-if="debugTrue">{{buttonCounter}}</div>
+    
+    <!-- signImage="//images.contentful.com/ssruiqlv9y3c/U7gODS2A004gmsKogm2mS/668591e3cf123b2bab922144cb891c7e/InfoboxBackground.png" -->
+    <markerwindow v-if="debugTrue" buttonText="Button test"
+    signImage="//images.contentful.com/ssruiqlv9y3c/U7gODS2A004gmsKogm2mS/668591e3cf123b2bab922144cb891c7e/InfoboxBackground.png"
+    markerBackground="//images.contentful.com/ssruiqlv9y3c/U7gODS2A004gmsKogm2mS/668591e3cf123b2bab922144cb891c7e/InfoboxBackground.png"
+    titel="marker titel"
+    infoAlt="test info alt"
+    infoNeu="test info neu"></markerwindow>
 		
 		<!--
 		<h2>Essential Links</h2>
@@ -15,6 +23,8 @@
 		 <nav id="mainNavigation">
 			<a href="">Mehr zum Projekt</a>
 			<a href="">Digitales Weben</a>
+			<a href="/home">home test</a>
+			<a href="/markerwindow">markerwindow test</a>
 		</nav> 
 
 		<my-comp v-if="debugTrue" character="wild"></my-comp>
@@ -31,7 +41,9 @@
 </template>
 
 <script>
+import Vue from "vue";
 import SnazzyInfoWindow from "snazzy-info-window";
+
 export default {
   name: "app",
   mapStyleJson: "",
@@ -44,20 +56,17 @@ export default {
         { ort: "Emmenbrücke", kanton: "LU" },
         { ort: "Oberems", kanton: "VS" },
         { ort: "Rotkreuz", kanton: "ZG" }
-	  ],
-	  debugTrue: false,
-	  buttonCounter: 0
+      ],
+      debugTrue: true,
+      buttonCounter: 0
     };
   },
-  methods:
-  {
-	  increment: function(event)
-	  {
-		  this.buttonCounter++;
-	  }
+  methods: {
+    increment: function(event) {
+      this.buttonCounter++;
+    }
   },
-  mounted: function()
-  {
+  mounted: function() {
     const element = document.getElementById("map");
     const options = {
       zoom: 17,
@@ -226,7 +235,7 @@ export default {
           let buttonText = item.fields.buttonText ? item.fields.buttonText : "";
 
           // '<div class="switchButton" v-on:click="switchText">' +
-          let content =
+          let contentOld =
             '<div class="markerWrapper">' +
             '<div class="switchButton" onclick="switchText(this);">' +
             buttonText +
@@ -252,17 +261,45 @@ export default {
             "</div>";
           "</div>" + "</div>" + "</div>";
 
+          let content = `<div id="info-window${item.sys.id}"><markerwindow button-text="${buttonText}" sign-image="//images.contentful.com/ssruiqlv9y3c/U7gODS2A004gmsKogm2mS/668591e3cf123b2bab922144cb891c7e/InfoboxBackground.png" marker-background="//images.contentful.com/ssruiqlv9y3c/U7gODS2A004gmsKogm2mS/668591e3cf123b2bab922144cb891c7e/InfoboxBackground.png" titel="marker titel" info-alt="test info alt" info-neu="test info neu"></markerwindow></div>`;
+
           // '<div class="signWrapper" style="background-image: url(' + item.fields.markerImage.file.url + ');">' +
           /*
 				if (item.fields.signImage)
 				{
 					console.log("signImage:",item.fields.signImage.fields.file.url);
 				}
-				*/
+        */
+
+        /*
+        // todo
+        let snazzyContent = `<div id="info-window${item.sys.id}"><info-window title="Mein Titel" 
+                 content="Mein Content" image="${item.fields.portrait.fields
+                   .file.url}" >
+                 </info-window></div>`;
+
+          let snazzyWindow = new SnazzyInfoWindow({
+            marker: markers[index],
+            content: snazzyContent,
+            callbacks: {
+              open: function(event) {
+                console.log(this);
+                new Vue().$mount(`#info-window${item.sys.id}`);
+              }
+            }
+          });
+          snazzyWindow.open();
+        });
+        */
 
           let infoWindow = new SnazzyInfoWindow({
             marker: marker,
-            content: content
+            content: content,
+            callbacks: {
+              open: function(event) {
+                console.log(this);
+                new Vue().$mount(`#info-window${item.sys.id}`);
+              }}
           });
 
           //infoWindow.open();
