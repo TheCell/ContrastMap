@@ -7,6 +7,7 @@ import './assets/jquery/jquery-3.2.1.min.js'
 import testModul from './modules/testmodul.js'
 import myComp from './components/testComp.vue'
 import markerwindow from './components/markerwindow.vue'
+import introwindow from './components/introscreen.vue'
 import VueRouter from 'vue-router'
 
 import { createClient } from 'contentful'
@@ -27,6 +28,7 @@ contentfulClient.getEntries()
 Vue.use(VueRouter);
 Vue.component("my-comp", myComp);
 Vue.component("markerwindow", markerwindow);
+Vue.component("introwindow", introwindow);
 
 const routes = [
   { path: '/home', component: Vue.component(Vue)},

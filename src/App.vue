@@ -25,7 +25,17 @@
 			<a href="">Digitales Weben</a>
 			<a href="/home">home test</a>
 			<a href="/markerwindow">markerwindow test</a>
-		</nav> 
+		</nav>
+
+    <div id="lineLegendBgBlur">
+    </div>
+
+    <div id="lineLegend">
+      <h3 class="streetLineColor">Strassen</h3>
+      <h3 class="buildingLineColor">Gebäude</h3>
+    </div>
+
+    <introwindow></introwindow>
 
 		<my-comp v-if="debugTrue" character="wild"></my-comp>
 
@@ -80,6 +90,12 @@ export default {
     // get and display all markers
     const cms_markers = [];
     let buildingLinePoints = [];
+    let conceptRed = "#e42313";
+    let conceptGray = "#c3c3c3";
+    let conceptBlack = "#000000";
+    let conceptWhite = "#ffffff";
+    let conceptStreetColor = "#355199";
+    let conceptBuildingColor = "#150aac";
 
     const markerBackground =
       "//images.contentful.com/ssruiqlv9y3c/U7gODS2A004gmsKogm2mS/668591e3cf123b2bab922144cb891c7e/InfoboxBackground.png";
@@ -104,7 +120,8 @@ export default {
       return window.infoWindows[window.infoWindows.length - 1];
     };
 
-    let mouseOverFunction = function(event) {
+    let mouseOverFunction = function(event)
+    {
       let polyline = this;
 
       let pointCoordinate = new google.maps.LatLng(
@@ -249,11 +266,11 @@ export default {
 
                   let poly = new google.maps.Polyline({
                     path: [point1, point2],
-                    strokeColor: "#000000",
+                    strokeColor: conceptStreetColor,
                     strokeOpacity: 1.0,
                     strokeWeight: 8
                   });
-  
+                  
                   poly.infoWin = createInfoWindow("Fadenstrasse");
 
                   window.polyLines.push(poly);
@@ -524,7 +541,7 @@ export default {
 
                 let poly = new google.maps.Polyline({
                   path: [point1, point2],
-                  strokeColor: "#55FFFF",
+                  strokeColor: conceptBuildingColor,
                   strokeOpacity: 1.0,
                   strokeWeight: 8
                 });
