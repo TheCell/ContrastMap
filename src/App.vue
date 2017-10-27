@@ -74,11 +74,28 @@ export default {
       heading: 90,
       styles: this.mapStyleJson,
       scrollwheel: false,
-      disableDefaultUI: true
+      disableDefaultUI: true,
+      draggableCursor:'crosshair'
     };
 
     window.mapThreadPoints = [];
     window.polyLines = [];
+    window.infoWindows = [];
+
+    let createInfoWindow = function(coordinates, content)
+    {
+      let tempInfoWindow = new google.maps.InfoWindow(
+        {
+          content: "testinhalt"
+        }
+      );
+
+      tempInfoWindow.setPosition(coordinates);
+
+      window.infoWindows.push(tempInfoWindow);
+
+      return  window.infoWindows[window.infoWindows.length -1];
+    }
 
     let mouseOverFunction = function(event)
     {
@@ -87,11 +104,13 @@ export default {
       //console.log("mouseoverlistener",this);
       //window.line.setOptions({strokeWeight: 5});
       
+      /*
       window.infoWindow = new google.maps.InfoWindow(
         {
           content: "testinhalt"
         }
       );
+      */
 
       /*
       let pointInHalf = window.line.getPath().getArray();
@@ -99,10 +118,11 @@ export default {
       pointInHalf[0].lng = (pointInHalf[0].lng + pointInHalf[1].lng) / 2
       */
       //pointInHalf = window.line.GetPointsAtDistance(window.line.length);
-      var pointCoordinate = new google.maps.LatLng(event.latLng.lat(), event.latLng.lng());
+      let pointCoordinate = new google.maps.LatLng(event.latLng.lat(), event.latLng.lng());
 
-      window.infoWindow.setPosition(pointCoordinate);
-      window.infoWindow.open(window.map);
+      let infoWin = createInfoWindow(pointCoordinate, "Fadenstrasse");
+      //window.infoWindow.setPosition(pointCoordinate);
+      infoWin.open(window.map);
 
       /*
       window.infoWindow.setContent();
@@ -172,7 +192,11 @@ export default {
         window.line.setOptions({strokeWeight: window.line.strokeWeight -1, strokeOpacity: 0.2});
         //window.line.setOptions({strokeWeight: window.line.strokeWeight -1});
         window.line.setVisible(false);
-        window.infoWindow.close(window.map);        
+        //window.infoWindow.close(window.map);        
+        window.infoWindows.forEach(function (ele)
+        {
+          ele.close(window.map);
+        })
       }, 200);
       
       //console.log(this);
@@ -240,8 +264,8 @@ export default {
       let point1 = {};
       let point2 = {};
 
-      console.log(window.mapThreadPoints);
-      console.log(window.map);
+      //console.log(window.mapThreadPoints);
+      //console.log(window.map);
 
       window.mapThreadPoints.forEach(function(point, index)
       {
@@ -257,7 +281,7 @@ export default {
             path: [point1, point2],
             strokeColor: '#000000',
             strokeOpacity: 1.0,
-            strokeWeight: 1
+            strokeWeight: 8
           });
 
           window.polyLines.push(poly);
