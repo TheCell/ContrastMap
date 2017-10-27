@@ -208,43 +208,45 @@ export default {
           .then(entry => {
             //console.log(entry);
             //console.log(entry.items[0].fields.streetEndCoordinatePairs);
-            window.mapThreadPoints =
-              entry.items[0].fields.streetEndCoordinatePairs;
-            //console.log(mapThreadPoints);
-            let point1 = {};
-            let point2 = {};
+            entry.items.forEach(function(item) {
+              window.mapThreadPoints =
+                item.fields.streetEndCoordinatePairs;
+              //console.log(mapThreadPoints);
+              let point1 = {};
+              let point2 = {};
 
-            //console.log(window.mapThreadPoints);
-            //console.log(window.map);
+              //console.log(window.mapThreadPoints);
+              //console.log(window.map);
 
-            window.mapThreadPoints.forEach(function(point, index) {
-              if (index % 2 == 0) {
-                point1 = new google.maps.LatLng(point);
-              } else {
-                point2 = new google.maps.LatLng(point);
+              window.mapThreadPoints.forEach(function(point, index) {
+                if (index % 2 == 0) {
+                  point1 = new google.maps.LatLng(point);
+                } else {
+                  point2 = new google.maps.LatLng(point);
 
-                let poly = new google.maps.Polyline({
-                  path: [point1, point2],
-                  strokeColor: "#000000",
-                  strokeOpacity: 1.0,
-                  strokeWeight: 8
-                });
+                  let poly = new google.maps.Polyline({
+                    path: [point1, point2],
+                    strokeColor: "#000000",
+                    strokeOpacity: 1.0,
+                    strokeWeight: 8
+                  });
 
-                window.polyLines.push(poly);
-                google.maps.event.addListener(
-                  poly,
-                  "mouseover",
-                  mouseOverFunction
-                );
-                google.maps.event.addListener(
-                  poly,
-                  "mouseout",
-                  mouseOutFunction
-                );
-                poly.setMap(window.map);
-                //console.log(poly);
-                //console.log(window.polyLines);
-              }
+                  window.polyLines.push(poly);
+                  google.maps.event.addListener(
+                    poly,
+                    "mouseover",
+                    mouseOverFunction
+                  );
+                  google.maps.event.addListener(
+                    poly,
+                    "mouseout",
+                    mouseOutFunction
+                  );
+                  poly.setMap(window.map);
+                  //console.log(poly);
+                  //console.log(window.polyLines);
+                }
+              });
             });
           });
 
