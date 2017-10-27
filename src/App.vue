@@ -69,12 +69,127 @@ export default {
   mounted: function() {
     const element = document.getElementById("map");
     const options = {
-      zoom: 17,
-      center: new google.maps.LatLng(47.071467, 8.277621),
+      zoom: 19,
+      center: new google.maps.LatLng(47.07056757581144, 8.27907532453537),
       heading: 90,
       styles: this.mapStyleJson,
       scrollwheel: false,
       disableDefaultUI: true
+    };
+
+    window.mapThreadPoints = [];
+    window.polyLines = [];
+
+    let mouseOverFunction = function(event)
+    {
+      window.line = this;
+      //console.log(event.latLng.lat());
+      //console.log("mouseoverlistener",this);
+      //window.line.setOptions({strokeWeight: 5});
+      
+      window.infoWindow = new google.maps.InfoWindow(
+        {
+          content: "testinhalt"
+        }
+      );
+
+      /*
+      let pointInHalf = window.line.getPath().getArray();
+      pointInHalf[0].lat = (pointInHalf[0].lat + pointInHalf[1].lat) / 2
+      pointInHalf[0].lng = (pointInHalf[0].lng + pointInHalf[1].lng) / 2
+      */
+      //pointInHalf = window.line.GetPointsAtDistance(window.line.length);
+      var pointCoordinate = new google.maps.LatLng(event.latLng.lat(), event.latLng.lng());
+
+      window.infoWindow.setPosition(pointCoordinate);
+      window.infoWindow.open(window.map);
+
+      /*
+      window.infoWindow.setContent();
+      window.infoWindow.setMap(window.map);
+      */
+
+      setTimeout( function() 
+      {
+        window.line.setOptions({strokeWeight: window.line.strokeWeight +1});
+      }, 50);
+
+      setTimeout( function() 
+      {
+        window.line.setOptions({strokeWeight: window.line.strokeWeight +1});
+      }, 100);
+
+      setTimeout( function() 
+      {
+        window.line.setOptions({strokeWeight: window.line.strokeWeight +1});
+      }, 150);
+
+      setTimeout( function() 
+      {
+        window.line.setOptions({strokeWeight: window.line.strokeWeight +1});
+      }, 200);
+
+      /*
+      this.interval = setInterval( function()
+      {
+        console.log("interval",this.strokeWeight);
+        window.line.setOptions({strokeWeight: this.strokeWeight +1});
+        if (this.strokeWeight > 6)
+        {
+          clearInterval(this.interval);
+        }
+      }, 600);
+      */
+      /*
+      console.log(this.strokeWeight);
+      */
+    };
+
+    let mouseOutFunction = function(event)
+    {
+      window.line = this;
+
+      setTimeout( function() 
+      {
+        window.line.setOptions({strokeWeight: window.line.strokeWeight -1, strokeOpacity: 0.8});
+        //window.line.setOptions({strokeWeight: window.line.strokeWeight -1});
+      }, 50);
+
+      setTimeout( function() 
+      {
+        window.line.setOptions({strokeWeight: window.line.strokeWeight -1, strokeOpacity: 0.6});
+        //window.line.setOptions({strokeWeight: window.line.strokeWeight -1});
+      }, 100);
+
+      setTimeout( function() 
+      {
+        window.line.setOptions({strokeWeight: window.line.strokeWeight -1, strokeOpacity: 0.4});
+        //window.line.setOptions({strokeWeight: window.line.strokeWeight -1});
+      }, 150);
+
+      setTimeout( function() 
+      {
+        window.line.setOptions({strokeWeight: window.line.strokeWeight -1, strokeOpacity: 0.2});
+        //window.line.setOptions({strokeWeight: window.line.strokeWeight -1});
+        window.line.setVisible(false);
+        window.infoWindow.close(window.map);        
+      }, 200);
+      
+      //console.log(this);
+      /*
+      this.interval = setInterval( function()
+      {
+        window.line.setOptions({strokeWeight: this.strokeWeight -1});
+        if (this.strokeWeight < 2)
+        {
+          clearInterval(this.interval);
+        }
+      }, 600);
+      */
+      //window.line.setOptions({strokeWeight: 1});
+      /*
+      console.log(this.strokeWeight);
+      */
     };
 
     // set map style
@@ -92,13 +207,90 @@ export default {
           // console.log(options);
           this.map = new google.maps.Map(element, options);
           window.map = this.map;
+          
+          window.tempPoints = [];
+
+          google.maps.event.addListener(window.map, "rightclick", function(event) {
+            var lat = event.latLng.lat();
+            var lng = event.latLng.lng();
+            window.tempPoints.push({"lat": lat, "lng": lng});
+            // populate yor box/field with lat, lng
+            //console.log('{"Lat":' + lat + ',"Lng":' + lng + '},');
+            console.log(JSON.stringify(window.tempPoints));
+
+          });
           // console.log(this.map.getHeading());
+
         } else {
           console.warn("Keine Mapstyles im CMS");
           this.map = new google.maps.Map(element, options);
         }
       });
 
+    contentfulClient
+    .getEntries({
+      content_type: "streetLines"
+    })
+    .then(entry => 
+    {
+      //console.log(entry);
+      //console.log(entry.items[0].fields.streetEndCoordinatePairs);
+      window.mapThreadPoints = entry.items[0].fields.streetEndCoordinatePairs;
+      //console.log(mapThreadPoints);
+      let point1 = {};
+      let point2 = {};
+
+      console.log(window.mapThreadPoints);
+      console.log(window.map);
+
+      window.mapThreadPoints.forEach(function(point, index)
+      {
+        if (index % 2 == 0)
+        {
+          point1 = new google.maps.LatLng(point);
+        }
+        else
+        {
+          point2 = new google.maps.LatLng(point);
+
+          let poly = new google.maps.Polyline({
+            path: [point1, point2],
+            strokeColor: '#000000',
+            strokeOpacity: 1.0,
+            strokeWeight: 1
+          });
+
+          window.polyLines.push(poly);
+          google.maps.event.addListener(poly, 'mouseover', mouseOverFunction);
+          google.maps.event.addListener(poly, 'mouseout', mouseOutFunction);
+          poly.setMap(window.map);
+          //console.log(poly);                
+          //console.log(window.polyLines);                
+        }
+      });            
+      
+      /*
+      const mapThreadPoints = [
+      new google.maps.LatLng(47.0739332834699, 8.28320144433587),
+      new google.maps.LatLng(47.0682447101286, 8.27144119042964)];
+      */
+
+      /*
+      const poly = new google.maps.Polyline({
+        path: mapThreadPoints,
+        strokeColor: '#000000',
+        strokeOpacity: 1.0,
+        strokeWeight: 1
+      });
+      */
+
+      /*
+      const mapOverlay = new google.maps.OverlayView();
+      mapOverlay.draw = function() {};
+      mapOverlay.setMap(window.map);
+      */
+    });
+    
     contentfulClient
       .getEntries({
         content_type: "kmlLayers"
@@ -162,6 +354,7 @@ export default {
 
     // get and display all markers
     const cms_markers = [];
+    
     const markerBackground =
       "//images.contentful.com/ssruiqlv9y3c/U7gODS2A004gmsKogm2mS/668591e3cf123b2bab922144cb891c7e/InfoboxBackground.png";
     const signBackground =
