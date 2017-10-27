@@ -57,7 +57,7 @@ export default {
         { ort: "Oberems", kanton: "VS" },
         { ort: "Rotkreuz", kanton: "ZG" }
       ],
-      debugTrue: true,
+      debugTrue: false,
       buttonCounter: 0
     };
   },
@@ -261,7 +261,7 @@ export default {
             "</div>";
           "</div>" + "</div>" + "</div>";
 
-          let content = `<div id="info-window${item.sys.id}"><markerwindow button-text="${buttonText}" sign-image="//images.contentful.com/ssruiqlv9y3c/U7gODS2A004gmsKogm2mS/668591e3cf123b2bab922144cb891c7e/InfoboxBackground.png" marker-background="//images.contentful.com/ssruiqlv9y3c/U7gODS2A004gmsKogm2mS/668591e3cf123b2bab922144cb891c7e/InfoboxBackground.png" titel="marker titel" info-alt="test info alt" info-neu="test info neu"></markerwindow></div>`;
+          let content = `<div id="info-window${item.sys.id}"><markerwindow button-text="${buttonText}" sign-image="${signImage}" marker-background="${this.markerBackground}" titel="${titel}" info-alt="${infoAlt}" info-neu="${infoNeu}"></markerwindow></div>`;
 
           // '<div class="signWrapper" style="background-image: url(' + item.fields.markerImage.file.url + ');">' +
           /*
