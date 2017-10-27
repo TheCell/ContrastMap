@@ -79,6 +79,7 @@ export default {
     };
     // get and display all markers
     const cms_markers = [];
+    let buildingLinePoints = [];
 
     const markerBackground =
       "//images.contentful.com/ssruiqlv9y3c/U7gODS2A004gmsKogm2mS/668591e3cf123b2bab922144cb891c7e/InfoboxBackground.png";
@@ -89,12 +90,14 @@ export default {
     window.polyLines = [];
     window.infoWindows = [];
 
-    let createInfoWindow = function(coordinates, content) {
-      let tempInfoWindow = new google.maps.InfoWindow({
+    let createInfoWindow = function(content)
+    {
+      let tempInfoWindow = new google.maps.InfoWindow(
+      {
         content: "testinhalt"
       });
 
-      tempInfoWindow.setPosition(coordinates);
+      //tempInfoWindow.setPosition(coordinates);
 
       window.infoWindows.push(tempInfoWindow);
 
@@ -102,70 +105,88 @@ export default {
     };
 
     let mouseOverFunction = function(event) {
-      window.line = this;
+      let polyline = this;
 
       let pointCoordinate = new google.maps.LatLng(
         event.latLng.lat(),
         event.latLng.lng()
       );
 
-      let infoWin = createInfoWindow(pointCoordinate, "Fadenstrasse");
+      //let infoWin = createInfoWindow(pointCoordinate, "Fadenstrasse");
 
-      infoWin.open(window.map);
+      //infoWin.open(window.map);
+      //console.log(event);
+      //console.log(polyline.infoWin);
+      
+      polyline.infoWin.setPosition({"lat": event.latLng.lat(), "lng": event.latLng.lng()});
+      polyline.infoWin.open(window.map);
 
-      setTimeout(function() {
-        window.line.setOptions({ strokeWeight: window.line.strokeWeight + 1 });
+      setTimeout(function()
+      {
+        polyline.setOptions({ strokeWeight: polyline.strokeWeight + 1 });
       }, 50);
 
-      setTimeout(function() {
-        window.line.setOptions({ strokeWeight: window.line.strokeWeight + 1 });
+      setTimeout(function()
+      {
+        polyline.setOptions({ strokeWeight: polyline.strokeWeight + 1 });
       }, 100);
 
-      setTimeout(function() {
-        window.line.setOptions({ strokeWeight: window.line.strokeWeight + 1 });
+      setTimeout(function()
+      {
+        polyline.setOptions({ strokeWeight: polyline.strokeWeight + 1 });
       }, 150);
 
-      setTimeout(function() {
-        window.line.setOptions({ strokeWeight: window.line.strokeWeight + 1 });
+      setTimeout(function()
+      {
+        polyline.setOptions({ strokeWeight: polyline.strokeWeight + 1 });
       }, 200);
     };
 
-    let mouseOutFunction = function(event) {
-      window.line = this;
+    let mouseOutFunction = function(event)
+    {
+      let polyline = this;
 
-      setTimeout(function() {
-        window.line.setOptions({
-          strokeWeight: window.line.strokeWeight - 1,
+      setTimeout(function()
+      {
+        polyline.setOptions(
+        {
+          strokeWeight: polyline.strokeWeight - 1,
           strokeOpacity: 0.8
         });
-        //window.line.setOptions({strokeWeight: window.line.strokeWeight -1});
+        //polyline.setOptions({strokeWeight: polyline.strokeWeight -1});
       }, 50);
 
-      setTimeout(function() {
-        window.line.setOptions({
-          strokeWeight: window.line.strokeWeight - 1,
+      setTimeout(function()
+      {
+        polyline.setOptions({
+          strokeWeight: polyline.strokeWeight - 1,
           strokeOpacity: 0.6
         });
-        //window.line.setOptions({strokeWeight: window.line.strokeWeight -1});
+        //polyline.setOptions({strokeWeight: polyline.strokeWeight -1});
       }, 100);
 
-      setTimeout(function() {
-        window.line.setOptions({
-          strokeWeight: window.line.strokeWeight - 1,
+      setTimeout(function()
+      {
+        polyline.setOptions({
+          strokeWeight: polyline.strokeWeight - 1,
           strokeOpacity: 0.4
         });
-        //window.line.setOptions({strokeWeight: window.line.strokeWeight -1});
+        //polyline.setOptions({strokeWeight: polyline.strokeWeight -1});
       }, 150);
 
-      setTimeout(function() {
-        window.line.setOptions({
-          strokeWeight: window.line.strokeWeight - 1,
+      setTimeout(function()
+      {
+        polyline.setOptions(
+        {
+          strokeWeight: polyline.strokeWeight - 1,
           strokeOpacity: 0.2
         });
-        //window.line.setOptions({strokeWeight: window.line.strokeWeight -1});
-        window.line.setVisible(false);
+        //polyline.setOptions({strokeWeight: polyline.strokeWeight -1});
+        polyline.setVisible(false);
         //window.infoWindow.close(window.map);
-        window.infoWindows.forEach(function(ele) {
+        // because else there are windows staying open
+        window.infoWindows.forEach(function(ele)
+        {
           ele.close(window.map);
         });
       }, 200);
@@ -208,9 +229,9 @@ export default {
           .then(entry => {
             //console.log(entry);
             //console.log(entry.items[0].fields.streetEndCoordinatePairs);
-            entry.items.forEach(function(item) {
-              window.mapThreadPoints =
-                item.fields.streetEndCoordinatePairs;
+            entry.items.forEach(function(item)
+            {
+              window.mapThreadPoints = item.fields.streetEndCoordinatePairs;
               //console.log(mapThreadPoints);
               let point1 = {};
               let point2 = {};
@@ -221,7 +242,9 @@ export default {
               window.mapThreadPoints.forEach(function(point, index) {
                 if (index % 2 == 0) {
                   point1 = new google.maps.LatLng(point);
-                } else {
+                }
+                else
+                {
                   point2 = new google.maps.LatLng(point);
 
                   let poly = new google.maps.Polyline({
@@ -230,6 +253,8 @@ export default {
                     strokeOpacity: 1.0,
                     strokeWeight: 8
                   });
+  
+                  poly.infoWin = createInfoWindow("Fadenstrasse");
 
                   window.polyLines.push(poly);
                   google.maps.event.addListener(
@@ -344,20 +369,20 @@ export default {
               //console.log("icon: ",icon);
 
               /*
-				if (icon != "")
-				{
-					//console.log("icon: ",icon);
+                if (icon != "")
+                {
+                  //console.log("icon: ",icon);
 
-					if (icon.url.charAt(0) == "/")
-					{
-						icon.url = icon.url.substring(2, icon.length);
-					}
-					icon.url = "https://" + icon.url;
-					
-					// console.log("icon: ",icon.url);
-					//icon.size = new google.maps.Size(20, 32)
-				}
-				*/
+                  if (icon.url.charAt(0) == "/")
+                  {
+                    icon.url = icon.url.substring(2, icon.length);
+                  }
+                  icon.url = "https://" + icon.url;
+                  
+                  // console.log("icon: ",icon.url);
+                  //icon.size = new google.maps.Size(20, 32)
+                }
+                */
 
               //create marker
               //console.log("lat: " + item.fields.markerPosition.lat + " lang: " + item.fields.markerPosition.lon);
@@ -413,32 +438,32 @@ export default {
 
               // '<div class="signWrapper" style="background-image: url(' + item.fields.markerImage.file.url + ');">' +
               /*
-				if (item.fields.signImage)
-				{
-					console.log("signImage:",item.fields.signImage.fields.file.url);
-				}
-        */
+              if (item.fields.signImage)
+              {
+                console.log("signImage:",item.fields.signImage.fields.file.url);
+              }
+              */
 
               /*
-        // todo
-        let snazzyContent = `<div id="info-window${item.sys.id}"><info-window title="Mein Titel" 
-                 content="Mein Content" image="${item.fields.portrait.fields
-                   .file.url}" >
-                 </info-window></div>`;
+              // todo
+              let snazzyContent = `<div id="info-window${item.sys.id}"><info-window title="Mein Titel" 
+                      content="Mein Content" image="${item.fields.portrait.fields
+                        .file.url}" >
+                      </info-window></div>`;
 
-          let snazzyWindow = new SnazzyInfoWindow({
-            marker: markers[index],
-            content: snazzyContent,
-            callbacks: {
-              open: function(event) {
-                console.log(this);
-                new Vue().$mount(`#info-window${item.sys.id}`);
-              }
-            }
-          });
-          snazzyWindow.open();
-        });
-        */
+                let snazzyWindow = new SnazzyInfoWindow({
+                  marker: markers[index],
+                  content: snazzyContent,
+                  callbacks: {
+                    open: function(event) {
+                      console.log(this);
+                      new Vue().$mount(`#info-window${item.sys.id}`);
+                    }
+                  }
+                });
+                snazzyWindow.open();
+              });
+              */
 
               let infoWindow = new SnazzyInfoWindow({
                 marker: marker,
@@ -453,19 +478,87 @@ export default {
 
               //infoWindow.open();
               /*
-				// create infowindow
-				let cs = `<div>${item.fields.titel}</div>`;
-				let cms_iw = new google.maps.InfoWindow({
-							content: cs
-				});
+              // create infowindow
+              let cs = `<div>${item.fields.titel}</div>`;
+              let cms_iw = new google.maps.InfoWindow({
+                    content: cs
+              });
 
-				// Infowindow oeffenen bei Click auf Marker
-				marker.addListener('click', event => { cms_iw.open(this.map, marker)});
-				*/
+              // Infowindow oeffenen bei Click auf Marker
+              marker.addListener('click', event => { cms_iw.open(this.map, marker)});
+              */
 
               cms_markers.push(marker);
               //console.log("added marker");
             });
+          });
+
+        contentfulClient
+          .getEntries({
+            content_type: "buildingLines"
+          })
+          .then(entry => {
+            //console.log(entry);
+            //console.log(entry.items[0].fields.streetEndCoordinatePairs);
+            //let allPoints = item.fields.buildingPointCoord;
+
+            entry.items.forEach(function(item) {
+              console.log(item.fields.buildingPointCoord);
+              buildingLinePoints = buildingLinePoints.concat(
+                item.fields.buildingPointCoord
+              );
+            });
+
+            buildingLinePoints.forEach(function(point, index) {
+              //console.log(point);
+              //console.log("index, buildingLinePoints.length",index,buildingLinePoints.length)
+              let tempArr = [];
+              let point1 = {};
+              let point2 = {};
+
+              tempArr = buildingLinePoints.slice(index + 1);
+
+              tempArr.forEach(function(tempArrPoint) {
+                point1 = new google.maps.LatLng(point);
+                point2 = new google.maps.LatLng(tempArrPoint);
+
+                let poly = new google.maps.Polyline({
+                  path: [point1, point2],
+                  strokeColor: "#55FFFF",
+                  strokeOpacity: 1.0,
+                  strokeWeight: 8
+                });
+
+                poly.infoWin = createInfoWindow("Fadenstrasse");
+
+                //infoWin.open(window.map);
+                //polyline.infoWin.open(window.map);
+
+                window.polyLines.push(poly);
+                google.maps.event.addListener(
+                  poly,
+                  "mouseover",
+                  mouseOverFunction
+                );
+                google.maps.event.addListener(
+                  poly,
+                  "mouseout",
+                  mouseOutFunction
+                );
+                poly.setMap(window.map);
+              });
+              /*
+              if (index < buildingLinePoints.length -1)
+              {
+                tempArr = buildingLinePoints.slice(index);
+              }
+              */
+
+              //console.log(tempArr);
+            });
+
+            window.buildingLinePoints = buildingLinePoints;
+            //console.log(buildingLinePoints);
           });
       });
   }
