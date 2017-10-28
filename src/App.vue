@@ -238,6 +238,11 @@ export default {
       {
           //callback
       });
+
+      console.log(window.mouseMoveTimer);
+      clearInterval(window.mouseMoveTimer);
+      console.log(window.mouseMoveTimer);
+      
     }
 
     // set map style

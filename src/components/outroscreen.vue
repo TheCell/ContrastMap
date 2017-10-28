@@ -35,12 +35,15 @@ export default {
     window.drawCanvas.width = window.innerWidth;
     window.drawCanvas.height = window.innerHeight;
 
-    window.mouseMoveTimer = window.setInterval(function()
+    if (!window.mouseMoveTimer)
     {
-      // enable mouse tracking every 100 ms
-      window.trackMouseMove = true;
-    }, 10);
-
+        window.mouseMoveTimer = window.setInterval(function()
+        {
+            // enable mouse tracking every 50 ms
+            window.trackMouseMove = true;
+        }, 50);
+    }
+    
     function mouseSafeTimer(evt)
     {
       if (!window.trackMouseMove)
