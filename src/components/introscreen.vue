@@ -50,7 +50,7 @@ export default {
         $("#introLineCutCanvas").animate({opacity: 0}, 800, function()
         {
             $(".introWindow")
-            .animate({top:-1000}, 800, function()
+            .animate({top: '-100vh'}, 800, function()
             {
                 //callback
             });
