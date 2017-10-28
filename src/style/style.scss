@@ -7,6 +7,7 @@ $conceptBlack: #000000;
 $conceptWhite: #ffffff;
 $conceptStreetColor: #355199;
 $conceptBuildingColor: #150aac;
+$conceptCompanyColor: #005d69;
 
 #app
 {
@@ -143,6 +144,11 @@ a:active
 .buildingLineColor
 {
     color: $conceptBuildingColor;
+}
+
+.companyLineColor
+{
+    color: $conceptCompanyColor;
 }
 
 /* begin bastel bastel mit markern */

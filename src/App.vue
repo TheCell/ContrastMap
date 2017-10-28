@@ -12,15 +12,7 @@
     infoAlt="test info alt"
     infoNeu="test info neu"></markerwindow>
 		
-		<!--
-		<h2>Essential Links</h2>
-		<div class="row">
-			<div class="large-4 columns">content</div>
-			<div class="large-8 columns">content</div>
-		</div>
-		-->
-
-		 <nav id="mainNavigation">
+		<nav id="mainNavigation">
 			<a href="">Mehr zum Projekt</a>
 			<a href="">Digitales Weben</a>
 			<a href="/home">home test</a>
@@ -33,6 +25,7 @@
     <div id="lineLegend">
       <h3 class="streetLineColor">Strassen</h3>
       <h3 class="buildingLineColor">Gebäude</h3>
+      <h3 class="companyLineColor">Unternehmen</h3>
     </div>
 
     <introwindow></introwindow>
@@ -90,12 +83,14 @@ export default {
     // get and display all markers
     const cms_markers = [];
     let buildingLinePoints = [];
+    let companyLinePoints = [];
     let conceptRed = "#e42313";
     let conceptGray = "#c3c3c3";
     let conceptBlack = "#000000";
     let conceptWhite = "#ffffff";
     let conceptStreetColor = "#355199";
     let conceptBuildingColor = "#150aac";
+    let conceptCompanyColor = "#005d69";
 
     const markerBackground =
       "//images.contentful.com/ssruiqlv9y3c/U7gODS2A004gmsKogm2mS/668591e3cf123b2bab922144cb891c7e/InfoboxBackground.png";
@@ -106,11 +101,11 @@ export default {
     window.polyLines = [];
     window.infoWindows = [];
 
-    let createInfoWindow = function(content)
+    let createInfoWindow = function(windowContent)
     {
       let tempInfoWindow = new google.maps.InfoWindow(
       {
-        content: "testinhalt"
+        content: windowContent
       });
 
       //tempInfoWindow.setPosition(coordinates);
@@ -134,8 +129,12 @@ export default {
       //infoWin.open(window.map);
       //console.log(event);
       //console.log(polyline.infoWin);
-      
-      polyline.infoWin.setPosition({"lat": event.latLng.lat(), "lng": event.latLng.lng()});
+
+      polyline.infoWin.setPosition(
+      {
+        lat: event.latLng.lat(),
+        lng: event.latLng.lng()
+      });
       polyline.infoWin.open(window.map);
 
       setTimeout(function()
@@ -175,7 +174,8 @@ export default {
 
       setTimeout(function()
       {
-        polyline.setOptions({
+        polyline.setOptions(
+        {
           strokeWeight: polyline.strokeWeight - 1,
           strokeOpacity: 0.6
         });
@@ -184,7 +184,8 @@ export default {
 
       setTimeout(function()
       {
-        polyline.setOptions({
+        polyline.setOptions(
+        {
           strokeWeight: polyline.strokeWeight - 1,
           strokeOpacity: 0.4
         });
@@ -211,11 +212,14 @@ export default {
 
     // set map style
     contentfulClient
-      .getEntries({
+      .getEntries(
+      {
         content_type: "mapstyle"
       })
-      .then(entry => {
-        if (entry.items.length > -1) {
+      .then(entry =>
+      {
+        if (entry.items.length > -1)
+        {
           this.mapStyleJson = entry.items[entry.items.length - 1];
           this.mapStyleJson = this.mapStyleJson.fields;
 
@@ -227,23 +231,29 @@ export default {
 
           google.maps.event.addListener(window.map, "rightclick", function(
             event
-          ) {
+          )
+          {
             var lat = event.latLng.lat();
             var lng = event.latLng.lng();
             window.tempPoints.push({ lat: lat, lng: lng });
             console.log(JSON.stringify(window.tempPoints));
           });
-        } else {
+        }
+        else
+        {
           console.warn("Keine Mapstyles im CMS");
           this.map = new google.maps.Map(element, options);
         }
       })
-      .then(something => {
+      .then(something =>
+      {
         contentfulClient
-          .getEntries({
+          .getEntries(
+          {
             content_type: "streetLines"
           })
-          .then(entry => {
+          .then(entry =>
+          {
             //console.log(entry);
             //console.log(entry.items[0].fields.streetEndCoordinatePairs);
             entry.items.forEach(function(item)
@@ -256,21 +266,24 @@ export default {
               //console.log(window.mapThreadPoints);
               //console.log(window.map);
 
-              window.mapThreadPoints.forEach(function(point, index) {
-                if (index % 2 == 0) {
+              window.mapThreadPoints.forEach(function(point, index)
+              {
+                if (index % 2 == 0)
+                {
                   point1 = new google.maps.LatLng(point);
                 }
                 else
                 {
                   point2 = new google.maps.LatLng(point);
 
-                  let poly = new google.maps.Polyline({
+                  let poly = new google.maps.Polyline(
+                  {
                     path: [point1, point2],
                     strokeColor: conceptStreetColor,
                     strokeOpacity: 1.0,
-                    strokeWeight: 8
+                    strokeWeight: 15
                   });
-                  
+
                   poly.infoWin = createInfoWindow("Fadenstrasse");
 
                   window.polyLines.push(poly);
@@ -293,13 +306,16 @@ export default {
           });
 
         contentfulClient
-          .getEntries({
+          .getEntries(
+          {
             content_type: "kmlLayers"
           })
-          .then(entries => {
+          .then(entries =>
+          {
             //console.log("allkmlEntries", entries);
 
-            entries.items.forEach((item, index) => {
+            entries.items.forEach((item, index) =>
+            {
               let kmlurl = "";
 
               kmlurl = item.fields.kmlUrlAsJson
@@ -309,11 +325,13 @@ export default {
               //console.log(kmlurl);
               //console.log("kmlentries:", item);
               //console.log("kmlentries:", item.fields.kmlUrlAsJson.url);
-              let ctaLayer = new google.maps.KmlLayer({
+              let ctaLayer = new google.maps.KmlLayer(
+              {
                 url: kmlurl,
                 map: this.map
               });
-              let ctaLayerTest = new google.maps.KmlLayer({
+              let ctaLayerTest = new google.maps.KmlLayer(
+              {
                 url: "https://dev.thecell.eu/contrastmapdata/test.kml",
                 map: this.map
               });
@@ -324,11 +342,14 @@ export default {
 
         // set map image overlays
         contentfulClient
-          .getEntries({
+          .getEntries(
+          {
             content_type: "mapImageOverlays"
           })
-          .then(entries => {
-            entries.items.forEach((item, index) => {
+          .then(entries =>
+          {
+            entries.items.forEach((item, index) =>
+            {
               let overlayImage = item.fields.overlayImage
                 ? item.fields.overlayImage.fields.file.url
                 : "";
@@ -354,11 +375,14 @@ export default {
           });
 
         contentfulClient
-          .getEntries({
+          .getEntries(
+          {
             content_type: "mapmarkerlook"
           })
-          .then(entries => {
-            entries.items.forEach((item, index) => {
+          .then(entries =>
+          {
+            entries.items.forEach((item, index) =>
+            {
               this.markerBackground = item.fields.markerBackground
                 ? item.fields.markerBackground.fields.file.url
                 : this.markerBackground;
@@ -371,13 +395,16 @@ export default {
           });
 
         contentfulClient
-          .getEntries({
+          .getEntries(
+          {
             content_type: "mapdata"
           })
-          .then(entries => {
+          .then(entries =>
+          {
             //console.log("entries: ",entries);
             // fuer jeden Eintrag einen Marker und ein Infowindow erstellen
-            entries.items.forEach((item, index) => {
+            entries.items.forEach((item, index) =>
+            {
               // wenn kein Icon definiert ist, den Default verwenden
               //console.log("item: ",item);
               let icon = item.fields.markerImage
@@ -403,7 +430,8 @@ export default {
 
               //create marker
               //console.log("lat: " + item.fields.markerPosition.lat + " lang: " + item.fields.markerPosition.lon);
-              let marker = new google.maps.Marker({
+              let marker = new google.maps.Marker(
+              {
                 position: {
                   lat: item.fields.markerPosition.lat,
                   lng: item.fields.markerPosition.lon
@@ -482,7 +510,8 @@ export default {
               });
               */
 
-              let infoWindow = new SnazzyInfoWindow({
+              let infoWindow = new SnazzyInfoWindow(
+              {
                 marker: marker,
                 content: content,
                 callbacks: {
@@ -511,22 +540,26 @@ export default {
           });
 
         contentfulClient
-          .getEntries({
+          .getEntries(
+          {
             content_type: "buildingLines"
           })
-          .then(entry => {
+          .then(entry =>
+          {
             //console.log(entry);
             //console.log(entry.items[0].fields.streetEndCoordinatePairs);
             //let allPoints = item.fields.buildingPointCoord;
 
-            entry.items.forEach(function(item) {
+            entry.items.forEach(function(item)
+            {
               console.log(item.fields.buildingPointCoord);
               buildingLinePoints = buildingLinePoints.concat(
                 item.fields.buildingPointCoord
               );
             });
 
-            buildingLinePoints.forEach(function(point, index) {
+            buildingLinePoints.forEach(function(point, index)
+            {
               //console.log(point);
               //console.log("index, buildingLinePoints.length",index,buildingLinePoints.length)
               let tempArr = [];
@@ -535,15 +568,17 @@ export default {
 
               tempArr = buildingLinePoints.slice(index + 1);
 
-              tempArr.forEach(function(tempArrPoint) {
+              tempArr.forEach(function(tempArrPoint)
+              {
                 point1 = new google.maps.LatLng(point);
                 point2 = new google.maps.LatLng(tempArrPoint);
 
-                let poly = new google.maps.Polyline({
+                let poly = new google.maps.Polyline(
+                {
                   path: [point1, point2],
                   strokeColor: conceptBuildingColor,
                   strokeOpacity: 1.0,
-                  strokeWeight: 8
+                  strokeWeight: 5
                 });
 
                 poly.infoWin = createInfoWindow("Fadenstrasse");
@@ -564,18 +599,65 @@ export default {
                 );
                 poly.setMap(window.map);
               });
-              /*
-              if (index < buildingLinePoints.length -1)
-              {
-                tempArr = buildingLinePoints.slice(index);
-              }
-              */
-
-              //console.log(tempArr);
             });
 
             window.buildingLinePoints = buildingLinePoints;
-            //console.log(buildingLinePoints);
+          });
+
+        contentfulClient
+          .getEntries(
+          {
+            content_type: "companyLines"
+          })
+          .then(entry =>
+          {
+            entry.items.forEach(function(item)
+            {
+              console.log(item.fields.companyPointCoordinates);
+              companyLinePoints = companyLinePoints.concat(
+                item.fields.companyPointCoordinates
+              );
+            });
+
+            companyLinePoints.forEach(function(point, index)
+            {
+              let tempArr = [];
+              let point1 = {};
+              let point2 = {};
+
+              tempArr = companyLinePoints.slice(index + 1);
+
+              tempArr.forEach(function(tempArrPoint)
+              {
+                point1 = new google.maps.LatLng(point);
+                point2 = new google.maps.LatLng(tempArrPoint);
+
+                let poly = new google.maps.Polyline(
+                {
+                  path: [point1, point2],
+                  strokeColor: conceptCompanyColor,
+                  strokeOpacity: 1.0,
+                  strokeWeight: 8
+                });
+
+                poly.infoWin = createInfoWindow("Ast beschriftet");
+
+                window.polyLines.push(poly);
+                google.maps.event.addListener(
+                  poly,
+                  "mouseover",
+                  mouseOverFunction
+                );
+                google.maps.event.addListener(
+                  poly,
+                  "mouseout",
+                  mouseOutFunction
+                );
+                poly.setMap(window.map);
+              });
+            });
+
+            window.companyLinePoints = companyLinePoints;
           });
       });
   }
