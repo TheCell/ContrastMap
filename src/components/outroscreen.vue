@@ -1,6 +1,7 @@
 <template>
     <div class="outroWindow">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis et quibusdam, minima necessitatibus molestias veritatis, deleniti vitae velit iste id enim, nisi eveniet cumque rerum inventore similique natus tempore cupiditate!
+        <canvas id="mouseoverlayCanvas"></canvas>
     </div>
 </template>
 
@@ -12,13 +13,126 @@ export default {
       //greeting: "Hello"
     };
   },
-  props: [
-    
-  ],
+  props: [],
   mounted: function()
   {
-    
+    /*
+    1. I write some code in the editor
+    2. I try to execute it
+    3. I messed it all up, jsut like everything else I do
+    4. My code is exactly like my life
+    5. A lot of bugs, unreadable
+    6. and no one loves me...
+    */
+    window.mouseMoveTimer = null;
+    window.trackMouseMove = false;
+    window.mouseCoords = [];
+    window.alreadyDrawnMouseCoords = [];
+    window.alreadyDrawnPoints = [];
+    window.drawCanvas = document.getElementById("mouseoverlayCanvas");
 
+    // set canvas size
+    window.drawCanvas.width = window.innerWidth;
+    window.drawCanvas.height = window.innerHeight;
+
+    window.mouseMoveTimer = window.setInterval(function()
+    {
+      // enable mouse tracking every 100 ms
+      window.trackMouseMove = true;
+    }, 10);
+
+    function mouseSafeTimer(evt)
+    {
+      if (!window.trackMouseMove)
+      {
+        return;
+      }
+
+      safeMouseCoords(evt);
+      window.trackMouseMove = false;
+    }
+
+    /*
+    function resizeCanvas()
+    {
+      // will erase the canvas
+      window.drawCanvas.width = window.innerWidth;
+      window.drawCanvas.height = window.innerHeight;
+    }
+    */
+
+    function safeMouseCoords(evt)
+    {
+      window.mouseCoords.push({ x: evt.clientX, y: evt.clientY });
+      drawPointsOnCanvas();
+    }
+
+    document.getElementById("app").onmousemove = mouseSafeTimer;
+    //window.onresize = resizeCanvas;
+
+    function getNewPoints()
+    {
+      let points = window.mouseCoords;
+      window.mouseCoords = [];
+      return points;
+    }
+
+    function getOldPoints()
+    {
+      return window.alreadyDrawnPoints ? window.alreadyDrawnPoints : [];
+    }
+
+    function addPointsToAlreadyDrawn(pointsArr)
+    {
+      window.alreadyDrawnPoints = window.alreadyDrawnPoints.concat(pointsArr);
+    }
+
+    function drawPointsOnCanvas()
+    {
+      let points = getNewPoints();
+
+      let alreadyDrawnPoints = getOldPoints();
+      let canvas = window.drawCanvas;
+      let slicedArr = [];
+      let maxDistanceForLinesSquared = 10000;
+      let cSquared = maxDistanceForLinesSquared;
+      let drawTransparency = 1;
+
+      let ctx = canvas.getContext("2d");
+      let radius = 1;
+
+      // draw points
+      points.forEach(function(ele)
+      {
+        ctx.beginPath();
+        ctx.strokeColor = "black";
+        ctx.arc(ele.x, ele.y, radius, 0, 2 * Math.PI);
+        ctx.stroke();
+      });
+
+      // draw lines between all points
+      points.forEach(function(point1, index)
+      {
+        alreadyDrawnPoints.forEach(function(point2)
+        {
+          cSquared =
+            Math.pow(point1.x - point2.x, 2) + Math.pow(point1.y - point2.y, 2);
+          if (cSquared <= maxDistanceForLinesSquared) {
+            drawTransparency = 1 - 1 / maxDistanceForLinesSquared * cSquared;
+            ctx.strokeStyle = "rgba(228, 35, 19, " + drawTransparency + ")";
+            ctx.beginPath();
+            ctx.moveTo(point1.x, point1.y);
+            ctx.lineTo(point2.x, point2.y);
+            ctx.stroke();
+          }
+        });
+      });
+
+      //console.log(window.alreadyDrawnPoints.length);
+      //window.alreadyDrawnPoints = window.alreadyDrawnPoints.concat(points);
+      //setTimeout(drawPointsOnCanvas, 200);
+      addPointsToAlreadyDrawn(points);
+    }
   }
 };
 </script>
