@@ -8,6 +8,7 @@ import testModul from './modules/testmodul.js'
 import myComp from './components/testComp.vue'
 import markerwindow from './components/markerwindow.vue'
 import introwindow from './components/introscreen.vue'
+import outrowindow from './components/outroscreen.vue'
 import VueRouter from 'vue-router'
 
 import { createClient } from 'contentful'
@@ -29,6 +30,7 @@ Vue.use(VueRouter);
 Vue.component("my-comp", myComp);
 Vue.component("markerwindow", markerwindow);
 Vue.component("introwindow", introwindow);
+Vue.component("outrowindow", outrowindow);
 
 const routes = [
   { path: '/home', component: Vue.component(Vue)},

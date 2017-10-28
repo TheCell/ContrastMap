@@ -30,6 +30,8 @@
 
     <introwindow></introwindow>
 
+    <outrowindow></outrowindow>
+
 		<my-comp v-if="debugTrue" character="wild"></my-comp>
 
 		<ul v-if="debugTrue">
@@ -161,6 +163,7 @@ export default {
     let mouseOutFunction = function(event)
     {
       let polyline = this;
+      checkLinesCleared();
 
       setTimeout(function()
       {
@@ -209,6 +212,33 @@ export default {
         });
       }, 200);
     };
+
+    let checkLinesCleared = function()
+    {
+      let amountUncleared = 0;
+
+      window.polyLines.forEach( function (ele)
+      {
+        if (ele.visible)
+        {
+          amountUncleared++;
+        }
+      });
+
+      if (amountUncleared < 5)
+      {
+        startEndscreen();
+      }
+    }
+
+    let startEndscreen = function()
+    {
+      $(".outroWindow")
+      .animate({top: '0'}, 800, function()
+      {
+          //callback
+      });
+    }
 
     // set map style
     contentfulClient
@@ -340,7 +370,6 @@ export default {
             });
           });
 
-        // set map image overlays
         contentfulClient
           .getEntries(
           {
