@@ -1,8 +1,13 @@
 <template>
     <div class="introWindow">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis et quibusdam, minima necessitatibus molestias veritatis, deleniti vitae velit iste id enim, nisi eveniet cumque rerum inventore similique natus tempore cupiditate!
         
         <div class="introLineCutAnim">
+            <p>Die Viscosistadt ist ein riesen <span style="color: red;">wirrwarr</span>! Niemand hat die Übersicht.
+                Keiner weiss mehr so genau, wer wen kennt, wer wo arbeitet und was es alles gibt.
+                Es liegt jetzt an dir, die Stadt etwas aufzuräumen! Wenns sein muss mit <span style="color: red;">Messer und Schere</span>.
+                Bring ordnung in das Fadenknäuel und schneide die Verknüpfungen heraus bis die Stadt wieder klar sichtbar ist.
+                Ob du die Stadt geordnet oder chaotisch entwirrst ist dir überlassen,
+                 sicherlich findest du einen <span style="color: red;">Roten Faden</span>, der dich durch die Stadt führt.</p>
             <p>Zerschneide den Faden um auf die Übersicht zu gelangen</p>
             <canvas id="introLineCutCanvas" width="500" height="5">
                 too bad your browser died centuries ago

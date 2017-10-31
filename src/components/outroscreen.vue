@@ -1,7 +1,15 @@
 <template>
     <div class="outroWindow">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis et quibusdam, minima necessitatibus molestias veritatis, deleniti vitae velit iste id enim, nisi eveniet cumque rerum inventore similique natus tempore cupiditate!
-        <canvas id="mouseoverlayCanvas"></canvas>
+      <div class="outroText">
+        <p>
+          Toll! Du hast die Stadt kennengelernt und dabei Ordnung ins Chaos gebracht.
+          Dabei hast du selbst einen Roten Faden durch die Stadt gezogen und alles kennengelernt.
+          Aber schau dir an, was für ein durcheinander du dabei gestiftet hast!
+          Es sieht aus, als hättest du ein grösseres Chaos hinterlassen als du angetroffen hast!
+          Vielleicht gelingt dir ein Systematischeres aufräumen beim nächsten besuch!
+        </p>
+      </div>
+      <canvas id="mouseoverlayCanvas"></canvas>
     </div>
 </template>
 

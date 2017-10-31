@@ -94,6 +94,7 @@ export default {
     let conceptGray = "#cacfd6";
     let conceptBlack = "#000000";
     let conceptWhite = "#ffffff";
+    let threadDelay = 20000;
     /*
     let conceptStreetColor = "#355199";
     let conceptBuildingColor = "#150aac";
@@ -635,7 +636,7 @@ export default {
                 setTimeout(function ()
                 {
                   poly.setMap(window.map);
-                }, Math.random() * 10000);
+                }, Math.random() * threadDelay);
                 //poly.setMap(window.map);
               }
               
@@ -748,7 +749,7 @@ export default {
                 setTimeout(function ()
                 {
                   poly.setMap(window.map);
-                }, Math.random() * 10000);
+                }, Math.random() * threadDelay);
                 //poly.setMap(window.map);
               });
             });
