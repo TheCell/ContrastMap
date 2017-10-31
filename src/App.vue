@@ -591,10 +591,59 @@ export default {
           })
           .then(entry =>
           {
-            //console.log(entry);
-            //console.log(entry.items[0].fields.streetEndCoordinatePairs);
-            //let allPoints = item.fields.buildingPointCoord;
+            entry.items.forEach(function(item)
+            {
+              buildingLinePoints = buildingLinePoints.concat(
+                item.fields.buildingPointCoord
+              );
+            });
 
+            let isFirstEntry = true;
+            buildingLinePoints.forEach(function(point, index)
+            {
+              let point1 = {};
+              let point2 = {};
+
+              if (isFirstEntry)
+              {
+                point1 = new google.maps.LatLng(point);
+                isFirstEntry = false;
+              }
+              else
+              {
+                point1 = new google.maps.LatLng(buildingLinePoints[index -1]);
+                point2 = new google.maps.LatLng(point);
+
+                let poly = new google.maps.Polyline(
+                {
+                  path: [point1, point2],
+                  strokeColor: conceptBuildingColor,
+                  strokeOpacity: 1.0,
+                  strokeWeight: 5
+                });
+
+                poly.infoWin = createInfoWindow("Fadenstrasse");
+
+                window.polyLines.push(poly);
+                google.maps.event.addListener(
+                  poly,
+                  "mouseover",
+                  mouseOverFunction
+                );
+                google.maps.event.addListener(
+                  poly,
+                  "mouseout",
+                  mouseOutFunction
+                );
+                poly.setMap(window.map);
+              }
+              
+            });
+
+            window.buildingLinePoints = buildingLinePoints;
+            
+            /*
+            // combine every building line with every other
             entry.items.forEach(function(item)
             {
               console.log(item.fields.buildingPointCoord);
@@ -605,8 +654,6 @@ export default {
 
             buildingLinePoints.forEach(function(point, index)
             {
-              //console.log(point);
-              //console.log("index, buildingLinePoints.length",index,buildingLinePoints.length)
               let tempArr = [];
               let point1 = {};
               let point2 = {};
@@ -628,9 +675,6 @@ export default {
 
                 poly.infoWin = createInfoWindow("Fadenstrasse");
 
-                //infoWin.open(window.map);
-                //polyline.infoWin.open(window.map);
-
                 window.polyLines.push(poly);
                 google.maps.event.addListener(
                   poly,
@@ -647,6 +691,8 @@ export default {
             });
 
             window.buildingLinePoints = buildingLinePoints;
+
+            */
           });
 
         contentfulClient
