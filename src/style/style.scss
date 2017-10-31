@@ -1,13 +1,18 @@
 @import '../../node_modules/snazzy-info-window/dist/snazzy-info-window.scss';
 
-$conceptRed: #e42313;
-$conceptGray: #c3c3c3;
+$conceptRed: #f22b29;
+$conceptGray: #cacfd6;
+$conceptDarkGray: #565656;
 $conceptBlack: #000000;
-//$conceptBlack: #555353;
 $conceptWhite: #ffffff;
+/*
 $conceptStreetColor: #355199;
 $conceptBuildingColor: #150aac;
 $conceptCompanyColor: #005d69;
+*/
+$conceptStreetColor: #f22b29;
+$conceptBuildingColor: #f22b29;
+$conceptCompanyColor: #f22b29;
 
 #app
 {
@@ -54,7 +59,8 @@ a:active
 .introWindow
 {
     z-index: 3;
-    background-color: $conceptWhite;
+    // background-color: $conceptWhite;
+    background-color: rgba(255, 255, 255, 0.7);
     position: absolute;
     width: 100%;
     height: 100%;
@@ -77,11 +83,12 @@ a:active
 {
     z-index: 3;
     //background-color: $conceptWhite;
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgba(255, 255, 255, 0.6);
     position: absolute;
     width: 100%;
     height: 100%;
     top: 100vh;
+    pointer-events: none;
 }
 
 #mouseoverlayCanvas
@@ -90,6 +97,7 @@ a:active
     top: 0;
     left: 0;
     //opacity: 0.6;
+    pointer-events: none;
 }
 
 /* scrollbar styling */
@@ -149,6 +157,8 @@ a:active
     padding-top: 25px;
     width: 200px;
     height: 120px;
+
+    display: none;
 }
 
 #lineLegend > h3

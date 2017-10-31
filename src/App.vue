@@ -13,10 +13,13 @@
     infoNeu="test info neu"></markerwindow>
 		
 		<nav id="mainNavigation">
+			<a href="javascript:void(0)" id="toEndScreenBtn">Endscreen Einblenden</a>
+      <!--
 			<a href="">Mehr zum Projekt</a>
 			<a href="">Digitales Weben</a>
 			<a href="/home">home test</a>
 			<a href="/markerwindow">markerwindow test</a>
+      -->
 		</nav>
 
     <div id="lineLegendBgBlur">
@@ -86,13 +89,19 @@ export default {
     const cms_markers = [];
     let buildingLinePoints = [];
     let companyLinePoints = [];
-    let conceptRed = "#e42313";
-    let conceptGray = "#c3c3c3";
+    let conceptRed = "#f22b29";
+    let conceptDarkGray = "#565656";
+    let conceptGray = "#cacfd6";
     let conceptBlack = "#000000";
     let conceptWhite = "#ffffff";
+    /*
     let conceptStreetColor = "#355199";
     let conceptBuildingColor = "#150aac";
     let conceptCompanyColor = "#005d69";
+    */
+    let conceptStreetColor = "#f22b29";
+    let conceptBuildingColor = "#f22b29";
+    let conceptCompanyColor = "#f22b29";
 
     const markerBackground =
       "//images.contentful.com/ssruiqlv9y3c/U7gODS2A004gmsKogm2mS/668591e3cf123b2bab922144cb891c7e/InfoboxBackground.png";
@@ -244,6 +253,8 @@ export default {
       console.log(window.mouseMoveTimer);
       
     }
+
+    document.getElementById("toEndScreenBtn").addEventListener("click", startEndscreen);
 
     // set map style
     contentfulClient

@@ -37,7 +37,7 @@ export default {
     ctx.stroke();
     */
     
-    ctx.strokeStyle = 'blue';
+    ctx.strokeStyle = '#f22b29';
     ctx.lineWidth = "5";
     ctx.moveTo( theLine.x, theLine.y );
     ctx.lineTo( theLine.x2, theLine.y2 );
