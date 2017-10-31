@@ -3,6 +3,7 @@
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis et quibusdam, minima necessitatibus molestias veritatis, deleniti vitae velit iste id enim, nisi eveniet cumque rerum inventore similique natus tempore cupiditate!
         
         <div class="introLineCutAnim">
+            <p>Zerschneide den Faden um auf die Übersicht zu gelangen</p>
             <canvas id="introLineCutCanvas" width="500" height="5">
                 too bad your browser died centuries ago
             </canvas>

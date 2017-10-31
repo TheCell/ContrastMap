@@ -300,17 +300,11 @@ export default {
           })
           .then(entry =>
           {
-            //console.log(entry);
-            //console.log(entry.items[0].fields.streetEndCoordinatePairs);
             entry.items.forEach(function(item)
             {
               window.mapThreadPoints = item.fields.streetEndCoordinatePairs;
-              //console.log(mapThreadPoints);
               let point1 = {};
               let point2 = {};
-
-              //console.log(window.mapThreadPoints);
-              //console.log(window.map);
 
               window.mapThreadPoints.forEach(function(point, index)
               {
@@ -343,9 +337,11 @@ export default {
                     "mouseout",
                     mouseOutFunction
                   );
-                  poly.setMap(window.map);
-                  //console.log(poly);
-                  //console.log(window.polyLines);
+                  setTimeout(function ()
+                  {
+                    poly.setMap(window.map);
+                  }, Math.random() * 10000);
+                  //poly.setMap(window.map);
                 }
               });
             });
@@ -635,7 +631,12 @@ export default {
                   "mouseout",
                   mouseOutFunction
                 );
-                poly.setMap(window.map);
+
+                setTimeout(function ()
+                {
+                  poly.setMap(window.map);
+                }, Math.random() * 10000);
+                //poly.setMap(window.map);
               }
               
             });
@@ -744,7 +745,11 @@ export default {
                   "mouseout",
                   mouseOutFunction
                 );
-                poly.setMap(window.map);
+                setTimeout(function ()
+                {
+                  poly.setMap(window.map);
+                }, Math.random() * 10000);
+                //poly.setMap(window.map);
               });
             });
 
