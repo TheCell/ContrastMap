@@ -281,15 +281,16 @@ export default {
 
     let startEndscreen = function()
     {
+      $(".outroWindow").show();
       $(".outroWindow")
       .animate({top: '0'}, 800, function()
       {
           //callback
       });
 
-      console.log(window.mouseMoveTimer);
+      //console.log(window.mouseMoveTimer);
       clearInterval(window.mouseMoveTimer);
-      console.log(window.mouseMoveTimer);
+      //console.log(window.mouseMoveTimer);
       
     }
 
