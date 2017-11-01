@@ -115,15 +115,44 @@ export default {
 
     let createInfoWindow = function(windowContent)
     {
+      /*
       let tempInfoWindow = new google.maps.InfoWindow(
       {
-        content: windowContent
+        content: "<div class='infoWindowContent'>" + windowContent + "</div>"
       });
 
-      //tempInfoWindow.setPosition(coordinates);
-
       window.infoWindows.push(tempInfoWindow);
+      */
 
+      /*
+      let content = `<div id="info-window${item.sys
+                .id}"><markerwindow button-text="${buttonText}" sign-image="${signImage}" marker-background="${this
+                .markerBackground}" titel="${titel}" info-alt="${infoAlt}" info-neu="${infoNeu}"></markerwindow></div>`;
+      */
+
+      /*
+      let tempInfoWindow = new SnazzyInfoWindow(
+      {
+        marker: marker,
+        content: content,
+        callbacks: {
+          open: function(event) {
+            console.log(this);
+            new Vue().$mount(`#info-window${item.sys.id}`);
+          }
+        }
+      });
+      */
+      
+      let content = '<div class="linenamesWindow">' + windowContent + '</div>';
+      let tempInfoWindow = new SnazzyInfoWindow(
+      {
+        map: window.map,
+        content: content
+      });
+      
+      window.infoWindows.push(tempInfoWindow);
+      
       return window.infoWindows[window.infoWindows.length - 1];
     };
 
@@ -142,12 +171,18 @@ export default {
       //console.log(event);
       //console.log(polyline.infoWin);
 
+      /*
       polyline.infoWin.setPosition(
       {
         lat: event.latLng.lat(),
         lng: event.latLng.lng()
       });
+      
       polyline.infoWin.open(window.map);
+      */
+
+      polyline.infoWin.setPosition(event.latLng);
+      polyline.infoWin.open();
 
       setTimeout(function()
       {
@@ -216,10 +251,13 @@ export default {
         polyline.setVisible(false);
         //window.infoWindow.close(window.map);
         // because else there are windows staying open
+        /*
         window.infoWindows.forEach(function(ele)
         {
           ele.close(window.map);
         });
+        */
+        polyline.infoWin.close(window.map);
       }, 200);
     };
 
@@ -322,7 +360,7 @@ export default {
                     path: [point1, point2],
                     strokeColor: conceptStreetColor,
                     strokeOpacity: 1.0,
-                    strokeWeight: 15
+                    strokeWeight: 8
                   });
 
                   poly.infoWin = createInfoWindow("Fadenstrasse");
@@ -616,7 +654,7 @@ export default {
                   path: [point1, point2],
                   strokeColor: conceptBuildingColor,
                   strokeOpacity: 1.0,
-                  strokeWeight: 5
+                  strokeWeight: 8
                 });
 
                 poly.infoWin = createInfoWindow("Fadenstrasse");

@@ -55,6 +55,31 @@ a:active
     background-color: $conceptGray;
 }
 
+/* google info box style */
+[class*='si-pointer-bg']
+{
+    border: none;
+}
+
+[class*='si-shadow-inner-pointer']
+{
+    box-shadow: none;
+}
+
+.linenamesWindow
+{
+    background-color: $conceptGray;
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 12px;
+}
+
+.si-wrapper-top
+{
+    transform: translate(-30%, -40%);
+}
+
 /* introWindow */
 .introWindow
 {
@@ -265,7 +290,7 @@ a:active
 
 .si-wrapper-top
 {
-    transform: translate(-10%, -89%);
+    //transform: translate(-10%, -89%);
 }
 
 /* marker style */
