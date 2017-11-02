@@ -363,7 +363,7 @@ export default {
                     path: [point1, point2],
                     strokeColor: conceptStreetColor,
                     strokeOpacity: 1.0,
-                    strokeWeight: 8
+                    strokeWeight: 4
                   });
 
                   poly.infoWin = createInfoWindow("Fadenstrasse");
@@ -652,12 +652,48 @@ export default {
                 point1 = new google.maps.LatLng(buildingLinePoints[index -1]);
                 point2 = new google.maps.LatLng(point);
 
+
+                /* testing ground zero */
+                //console.log("symbolpath",google.maps.SymbolPath.BACKWARD_OPEN_ARROW);
+                //console.log(options.Symbol);
+                //options.Symbol = google.maps.SymbolPath.BACKWARD_OPEN_ARROW;
+                /* testing ground zero end */
+
+                   // "path": "m 24.2,28.5 0,0.9 c 0,0.1 -0.1,0.2 -0.2,0.2 -0.1,0 -0.2,-0.1 -0.2,-0.2 0,0 0,0 0,0 l 0,-0.9 c 0,-0.1 0.1,-0.2 0.2,-0.2 0.1,0 0.2,0.1 0.2,0.2 z",
+                /*
+                let iconsequ = [];
+                let testObj = {
+                    "path": "M 0,-1 0,1",
+                    "fillColor": "#FF2288",
+                    "fillOpacity": 0.8,
+                    "strokeColor": "#FF2288",
+                    "strokeWeight": 1,
+                    "scale": 1
+                  };
+
+                iconsequ.push(
+                  {
+                    icon: testObj,
+                    offset: "0",
+                    repeat: "0"
+                  });
+
                 let poly = new google.maps.Polyline(
                 {
                   path: [point1, point2],
                   strokeColor: conceptBuildingColor,
                   strokeOpacity: 1.0,
-                  strokeWeight: 8
+                  strokeWeight: 4,
+                  icons: iconsequ
+                });
+                */
+
+                let poly = new google.maps.Polyline(
+                {
+                  path: [point1, point2],
+                  strokeColor: conceptBuildingColor,
+                  strokeOpacity: 1.0,
+                  strokeWeight: 4
                 });
 
                 poly.infoWin = createInfoWindow("Fadenstrasse");
@@ -771,7 +807,7 @@ export default {
                   path: [point1, point2],
                   strokeColor: conceptCompanyColor,
                   strokeOpacity: 1.0,
-                  strokeWeight: 8
+                  strokeWeight: 4
                 });
 
                 poly.infoWin = createInfoWindow("Ast beschriftet");
