@@ -2,6 +2,7 @@
     <div class="introWindow">
         <!-- <div class="introLineCutAnim"> -->
         <div>
+            <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,600,700" rel="stylesheet">
             <div class="grid-container">
                 <div class="upperPart"></div>
                 <div class="lowerPart">

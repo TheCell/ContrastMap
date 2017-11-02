@@ -1,5 +1,6 @@
 <template>
     <div class="outroWindow">
+      <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,600,700" rel="stylesheet">
       <div class="grid-container">
         <div class="upperPartOutro">
             <div class="grid-x grid-padding-x">
