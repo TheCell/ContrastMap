@@ -302,7 +302,10 @@ export default {
       clearInterval(window.mouseMoveTimer);
     }
 
-    document.getElementById("toEndScreenBtn").addEventListener("click", startEndscreen);
+    if (document.getElementById("toEndScreenBtn"))
+    {
+      document.getElementById("toEndScreenBtn").addEventListener("click", startEndscreen);
+    }
 
     // set map style
     contentfulClient
