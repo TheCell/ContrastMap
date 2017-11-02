@@ -1,17 +1,39 @@
 <template>
     <div class="introWindow">
-        
-        <div class="introLineCutAnim">
-            <p>Die Viscosistadt ist ein riesen <span style="color: red;">wirrwarr</span>! Niemand hat die Übersicht.
-                Keiner weiss mehr so genau, wer wen kennt, wer wo arbeitet und was es alles gibt.
-                Es liegt jetzt an dir, die Stadt etwas aufzuräumen! Wenns sein muss mit <span style="color: red;">Messer und Schere</span>.
-                Bring ordnung in das Fadenknäuel und schneide die Verknüpfungen heraus bis die Stadt wieder klar sichtbar ist.
-                Ob du die Stadt geordnet oder chaotisch entwirrst ist dir überlassen,
-                 sicherlich findest du einen <span style="color: red;">Roten Faden</span>, der dich durch die Stadt führt.</p>
-            <p>Zerschneide den Faden um auf die Übersicht zu gelangen</p>
-            <canvas id="introLineCutCanvas" width="500" height="5">
-                too bad your browser died centuries ago
-            </canvas>
+        <!-- <div class="introLineCutAnim"> -->
+        <div>
+            <div class="grid-container">
+                <div class="upperPart"></div>
+                <div class="lowerPart">
+                    <div class="grid-x grid-padding-x">
+                        <div class="large-7 medium-12 cell">
+                        </div>
+
+                        <div class="large-4 medium-12 cell">
+                            <div class="introThreadTitleBox">
+                                <span class="introThreadTitle">
+                                DER ROTE <br> FADEN
+                                </span>
+                            </div>
+
+                            <p id="intro-text">«Wir hören von einer besondern Einrichtung bei der englischen Marine. Sämtliche Tauwerke der königlichen Flotte, vom stärksten bis zum schwächsten, sind dergestalt gesponnen, dass ein roter Faden durch das Ganze durchgeht, den man nicht herauswinden kann, ohne alles aufzulösen, und woran auch die kleinsten Stücke kenntlich sind, dass sie der Krone gehören. Ebenso zieht sich durch Ottiliens Tagebuch ein Faden der Neigung und Anhänglichkeit, der alles verbindet und das Ganze bezeichnet.»</p>
+                        </div>
+                        <div class="large-1 medium-12 cell">
+                        </div>
+
+                        <div class="large-1 medium-12 cell">
+                        </div>
+
+                        <div class="large-7 medium-12 cell">
+                            <p id="faden-text">Zerschneide den Faden</p>
+                            <canvas id="introLineCutCanvas">
+                                too bad your browser died centuries ago
+                        </canvas>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -56,9 +78,9 @@ export default {
         $("#introLineCutCanvas").animate({opacity: 0}, 800, function()
         {
             $(".introWindow")
-            .animate({top: '-100vh'}, 800, function()
+            .animate({top: '100vh'}, 800, function()
             {
-                //callback
+                $(".introWindow").hide();
             });
 
             /*

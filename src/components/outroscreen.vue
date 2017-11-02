@@ -1,13 +1,20 @@
 <template>
     <div class="outroWindow">
-      <div class="outroText">
-        <p>
-          Toll! Du hast die Stadt kennengelernt und dabei Ordnung ins Chaos gebracht.
-          Dabei hast du selbst einen Roten Faden durch die Stadt gezogen und alles kennengelernt.
-          Aber schau dir an, was für ein durcheinander du dabei gestiftet hast!
-          Es sieht aus, als hättest du ein grösseres Chaos hinterlassen als du angetroffen hast!
-          Vielleicht gelingt dir ein Systematischeres aufräumen beim nächsten besuch!
-        </p>
+      <div class="grid-container">
+        <div class="upperPartOutro">
+            <div class="grid-x grid-padding-x">
+                <div class="large-8 medium-12 cell">
+                </div>
+
+                <div class="large-3 medium-12 cell">
+                    <p id="outro-text">Dadurch, dass du die Fäden zerschnitten hast, ist ein wunderschönes neues Fadengespann entstanden. Somit hast du deinen eigenen roten Faden durch die Viscosistadt gezogen. Beim nächsten Besuch wird das Muster sicher wieder völlig anders aussehen – ein einzigartiges Muster, das du da gesponnen hast.</p>
+                </div>
+                <div class="large-1 medium-12 cell">
+                </div>
+            </div>
+        </div>
+                <div class="lowerPartOutro">
+        </div>
       </div>
       <canvas id="mouseoverlayCanvas"></canvas>
     </div>

@@ -1,6 +1,6 @@
 @import '../../node_modules/snazzy-info-window/dist/snazzy-info-window.scss';
 
-$conceptRed: #f22b29;
+$conceptRed: #ff0024;
 $conceptGray: #cacfd6;
 $conceptDarkGray: #565656;
 $conceptBlack: #000000;
@@ -10,9 +10,9 @@ $conceptStreetColor: #355199;
 $conceptBuildingColor: #150aac;
 $conceptCompanyColor: #005d69;
 */
-$conceptStreetColor: #f22b29;
-$conceptBuildingColor: #f22b29;
-$conceptCompanyColor: #f22b29;
+$conceptStreetColor: #ff0024;
+$conceptBuildingColor: #ff0024;
+$conceptCompanyColor: #ff0024;
 
 #app
 {
@@ -95,7 +95,7 @@ a:active
 {
     width: 100%;
     text-align: center;
-    margin-top: 500px;
+    margin-top: 400px;
     width: 700px;
 	margin-left: auto;
 	margin-right: auto;
@@ -104,6 +104,62 @@ a:active
 #introLineCutCanvas
 {
     //background-color: lightblue;
+    background-color: $conceptRed;
+    width: 100%;
+    height: 3px;
+}
+
+.grid-container
+{
+    max-width: 100%;
+    padding: 0;
+}
+
+.upperPart
+{
+    min-height: 40vh;    
+}
+
+.lowerPart
+{
+    background-color: rgba(0,0,0,0.8);
+    min-height: 60vh;
+}
+
+
+#intro-text {
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 300;
+    color: white;
+    letter-spacing: 1px;
+    line-height: 1.4;
+    text-align: left;
+    padding-top: 7%;
+}
+
+#faden-text {
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 600;
+    color: white;
+    letter-spacing: 1px;
+    text-align: left;
+    margin: 0;
+}
+
+.introThreadTitle
+{
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.introThreadTitleBox
+{
+    background-color: $conceptRed;
+    padding: 12px 14px;
+    font-size: 93px;
+    line-height: 0;
+    margin-top: -92px;
 }
 
 /* outro window */
@@ -111,14 +167,26 @@ a:active
 {
     z-index: 3;
     //background-color: $conceptWhite;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.6);
     //background-color: rgba(255, 255, 255, 1);
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 100vh;
+    top: -100vh;
     pointer-events: none;
     display: none;
+}
+
+.upperPartOutro
+{
+    min-height: 40vh;
+    background-color: rgba(255,255,255,1);
+}
+
+.lowerPartOutro
+{
+    //background-color: rgba(255,255,255,0.6);
+    min-height: 60vh;
 }
 
 .outroText
@@ -126,6 +194,16 @@ a:active
     width: 700px;
 	margin: auto;
     margin-top: 40vh;
+}
+
+#outro-text {
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 300;
+    color: black;
+    letter-spacing: 1px;
+    line-height: 1.4;
+    text-align: left;
+    padding-top: 12%;
 }
 
 #mouseoverlayCanvas

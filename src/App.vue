@@ -273,7 +273,8 @@ export default {
         }
       });
 
-      if (amountUncleared < 1)
+      console.log("amount", amountUncleared);
+      if (amountUncleared < 3)
       {
         startEndscreen();
       }
@@ -281,6 +282,7 @@ export default {
 
     let startEndscreen = function()
     {
+      console.log("starting endscreen");
       $(".outroWindow").show();
       $(".outroWindow")
       .animate({top: '0'}, 800, function()
