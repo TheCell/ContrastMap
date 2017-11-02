@@ -739,7 +739,7 @@ export default {
                   icons: iconsequ
                 });
 
-                poly.infoWin = createInfoWindow("Fadenstrasse");
+                poly.infoWin = createInfoWindow("Viscosi Gebäudeverbindung");
 
                 window.polyLines.push(poly);
                 google.maps.event.addListener(
@@ -889,7 +889,7 @@ export default {
                   icons: iconsequ
                 });
 
-                poly.infoWin = createInfoWindow("Ast beschriftet");
+                poly.infoWin = createInfoWindow("Firmenverbindung");
 
                 window.polyLines.push(poly);
                 google.maps.event.addListener(
