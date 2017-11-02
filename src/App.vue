@@ -13,8 +13,8 @@
     infoNeu="test info neu"></markerwindow>
 		
 		<nav id="mainNavigation">
-			<a href="javascript:void(0)" id="toEndScreenBtn">Endscreen Einblenden</a>
       <!--
+			<a href="javascript:void(0)" id="toEndScreenBtn">Endscreen Einblenden</a>
 			<a href="">Mehr zum Projekt</a>
 			<a href="">Digitales Weben</a>
 			<a href="/home">home test</a>
