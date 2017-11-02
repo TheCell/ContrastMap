@@ -273,7 +273,7 @@ export default {
         }
       });
 
-      if (amountUncleared < 5)
+      if (amountUncleared < 1)
       {
         startEndscreen();
       }
