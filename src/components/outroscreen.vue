@@ -4,13 +4,13 @@
       <div class="grid-container">
         <div class="upperPartOutro">
             <div class="grid-x grid-padding-x">
-                <div class="large-8 medium-12 cell">
+                <div class="large-8 medium-8 cell">
                 </div>
 
-                <div class="large-3 medium-12 cell">
+                <div class="large-3 medium-3 cell">
                     <p id="outro-text">Dadurch, dass du die Fäden zerschnitten hast, ist ein wunderschönes neues Fadengespann entstanden. Somit hast du deinen eigenen roten Faden durch die Viscosistadt gezogen. Beim nächsten Besuch wird das Muster sicher wieder völlig anders aussehen – ein einzigartiges Muster, das du da gesponnen hast.</p>
                 </div>
-                <div class="large-1 medium-12 cell">
+                <div class="large-1 medium-1 cell">
                 </div>
             </div>
         </div>
