@@ -284,7 +284,6 @@ export default {
         }
       });
 
-      console.log("amount", amountUncleared);
       if (amountUncleared < 3)
       {
         startEndscreen();
@@ -293,7 +292,6 @@ export default {
 
     let startEndscreen = function()
     {
-      console.log("starting endscreen");
       $(".outroWindow").show();
       $(".outroWindow")
       .animate({top: '0'}, 800, function()
@@ -301,10 +299,7 @@ export default {
           //callback
       });
 
-      //console.log(window.mouseMoveTimer);
       clearInterval(window.mouseMoveTimer);
-      //console.log(window.mouseMoveTimer);
-      
     }
 
     document.getElementById("toEndScreenBtn").addEventListener("click", startEndscreen);
