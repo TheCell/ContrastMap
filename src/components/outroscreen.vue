@@ -7,7 +7,7 @@
                 <div class="large-8 medium-8 cell">
                 </div>
 
-                <div class="large-3 medium-3 cell">
+                <div class="large-3 medium-3 cell" style="z-index: 1;">
                     <p id="outro-text">Alle Fäden der Viscosistadt wurden zerschnitten und der rote Faden somit komplett aufgelöst. Dadurch ist jedoch ein wunderschönes neues Fadengespann entstanden, womit du deinen eigenen roten Faden gezogen hast. Beim nächsten Mal wird das Gewobene bestimmt wieder anders aussehen – ein einzigartiges Muster – jedes Mal ein neuer Weg durch die Viscosistadt.</p>
                 </div>
                 <div class="large-1 medium-1 cell">
@@ -138,7 +138,7 @@ export default {
             Math.pow(point1.x - point2.x, 2) + Math.pow(point1.y - point2.y, 2);
           if (cSquared <= maxDistanceForLinesSquared) {
             drawTransparency = 1 - 1 / maxDistanceForLinesSquared * cSquared;
-            ctx.strokeStyle = "rgba(228, 35, 19, " + drawTransparency + ")";
+            ctx.strokeStyle = "rgba(255, 0, 22, " + drawTransparency + ")";
             ctx.beginPath();
             ctx.moveTo(point1.x, point1.y);
             ctx.lineTo(point2.x, point2.y);
