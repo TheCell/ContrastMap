@@ -840,73 +840,77 @@ export default {
 
               tempArr = companyLinePoints.slice(index + 1);
 
-              tempArr.forEach(function(tempArrPoint)
+              tempArr.forEach(function(tempArrPoint, index)
               {
-                point1 = new google.maps.LatLng(point);
-                point2 = new google.maps.LatLng(tempArrPoint);
-
-                /*
-                let poly = new google.maps.Polyline(
+                if (index < 5)
                 {
-                  path: [point1, point2],
-                  strokeColor: conceptCompanyColor,
-                  strokeOpacity: 1.0,
-                  strokeWeight: 4
-                });
-                */
-                // add points to start and end of lines
-                let iconsequ = [];
-                let testObj = {
-                  "path": "M -2,0 C -1.947018,-2.2209709 1.9520943,-2.1262691 2,0.00422057 2.0378955,1.3546185 1.5682108,2.0631345 1.4372396e-8,2.0560929 -1.7155482,2.0446854 -1.9145886,1.0142836 -2,0.06735507 Z",
-                  "fillColor": "#ff0024",
-                  "fillOpacity": 0.8,
-                  "strokeColor": "#ff0024",
-                  "strokeWeight": 1,
-                  "scale": 1
-                };
+                  point1 = new google.maps.LatLng(point);
+                  point2 = new google.maps.LatLng(tempArrPoint);
 
-                iconsequ.push(
-                {
-                  icon: testObj,
-                  offset: "0%",
-                  repeat: "0"
-                });
+                  /*
+                  let poly = new google.maps.Polyline(
+                  {
+                    path: [point1, point2],
+                    strokeColor: conceptCompanyColor,
+                    strokeOpacity: 1.0,
+                    strokeWeight: 4
+                  });
+                  */
+                  // add points to start and end of lines
+                  let iconsequ = [];
+                  let testObj = {
+                    "path": "M -2,0 C -1.947018,-2.2209709 1.9520943,-2.1262691 2,0.00422057 2.0378955,1.3546185 1.5682108,2.0631345 1.4372396e-8,2.0560929 -1.7155482,2.0446854 -1.9145886,1.0142836 -2,0.06735507 Z",
+                    "fillColor": "#ff0024",
+                    "fillOpacity": 0.8,
+                    "strokeColor": "#ff0024",
+                    "strokeWeight": 1,
+                    "scale": 1
+                  };
+
+                  iconsequ.push(
+                  {
+                    icon: testObj,
+                    offset: "0%",
+                    repeat: "0"
+                  });
+                  
+                  iconsequ.push(
+                  {
+                    icon: testObj,
+                    offset: "100%",
+                    repeat: "0"
+                  });
+
+                  // create polyline between points, add start and end point
+                  let poly = new google.maps.Polyline(
+                  {
+                    path: [point1, point2],
+                    strokeColor: conceptBuildingColor,
+                    strokeOpacity: 1.0,
+                    strokeWeight: 2,
+                    icons: iconsequ
+                  });
+
+                  poly.infoWin = createInfoWindow("Firmenverbindung");
+
+                  window.polyLines.push(poly);
+                  google.maps.event.addListener(
+                    poly,
+                    "mouseover",
+                    mouseOverFunction
+                  );
+                  google.maps.event.addListener(
+                    poly,
+                    "mouseout",
+                    mouseOutFunction
+                  );
+                  setTimeout(function ()
+                  {
+                    poly.setMap(window.map);
+                  }, Math.random() * threadDelay);
+                  //poly.setMap(window.map);
+                }
                 
-                iconsequ.push(
-                {
-                  icon: testObj,
-                  offset: "100%",
-                  repeat: "0"
-                });
-
-                // create polyline between points, add start and end point
-                let poly = new google.maps.Polyline(
-                {
-                  path: [point1, point2],
-                  strokeColor: conceptBuildingColor,
-                  strokeOpacity: 1.0,
-                  strokeWeight: 2,
-                  icons: iconsequ
-                });
-
-                poly.infoWin = createInfoWindow("Firmenverbindung");
-
-                window.polyLines.push(poly);
-                google.maps.event.addListener(
-                  poly,
-                  "mouseover",
-                  mouseOverFunction
-                );
-                google.maps.event.addListener(
-                  poly,
-                  "mouseout",
-                  mouseOutFunction
-                );
-                setTimeout(function ()
-                {
-                  poly.setMap(window.map);
-                }, Math.random() * threadDelay);
-                //poly.setMap(window.map);
               });
             });
 
