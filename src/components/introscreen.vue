@@ -83,8 +83,6 @@ export default {
 
     canvas.onmouseover = function(e)
     {
-        console.log("jo");
-
         $("#introLineCutCanvas").animate({opacity: 0}, 800, function()
         {
             $(".introWindow")

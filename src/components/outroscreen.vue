@@ -4,11 +4,17 @@
       <div class="grid-container">
         <div class="upperPartOutro">
             <div class="grid-x grid-padding-x">
-                <div class="large-8 medium-8 cell">
+                <div class="large-7 medium-7 cell">
                 </div>
 
-                <div class="large-3 medium-3 cell" style="z-index: 1;">
-                    <p id="outro-text">Alle Fäden der Viscosistadt wurden zerschnitten und der rote Faden somit komplett aufgelöst. Dadurch ist jedoch ein wunderschönes neues Fadengespann entstanden, womit du deinen eigenen roten Faden gezogen hast. Beim nächsten Mal wird das Gewobene bestimmt wieder anders aussehen – ein einzigartiges Muster – jedes Mal ein neuer Weg durch die Viscosistadt.</p>
+                <div class="large-4 medium-4 cell" style="z-index: 1;">
+                  <p id="outro-text">Alle Fäden der Viscosistadt wurden zerschnitten und der rote Faden somit komplett aufgelöst. Dadurch ist jedoch ein wunderschönes neues Fadengespann entstanden, womit du deinen eigenen roten Faden gezogen hast. Beim nächsten Mal wird das Gewobene bestimmt wieder anders aussehen – ein einzigartiges Muster – jedes Mal ein neuer Weg durch die Viscosistadt.</p>
+                  <div> 
+                    <p id="faden-text-outro">Zerschneide den Faden</p>
+                  <canvas id="outroLineCutCanvas">
+                          too bad your browser died centuries ago
+                  </canvas>
+                  </div>
                 </div>
                 <div class="large-1 medium-1 cell">
                 </div>
@@ -152,6 +158,12 @@ export default {
       //setTimeout(drawPointsOnCanvas, 200);
       addPointsToAlreadyDrawn(points);
     }
+
+    let outroCanvas = document.getElementById("outroLineCutCanvas");
+    outroCanvas.onmouseover = function(e)
+    {
+      window.location.href = "http://dev.thecell.eu/mousethread/galleryFromGit/";
+    } 
   }
 };
 </script>

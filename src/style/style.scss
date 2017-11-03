@@ -128,6 +128,13 @@ a:active
     height: 3px;
 }
 
+#outroLineCutCanvas
+{
+    background-color: $conceptRed;
+    width: 100%;
+    height: 3px;
+}
+
 .grid-container
 {
     max-width: 100%;
@@ -173,6 +180,14 @@ a:active
     margin: 0;
 }
 
+#faden-text-outro {
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-align: left;
+    margin: 0;
+}
+
 .introThreadTitle
 {
     font-family: 'Titillium Web', sans-serif;
@@ -206,7 +221,7 @@ a:active
     width: 100%;
     height: 100%;
     top: -100vh;
-    pointer-events: none;
+    //pointer-events: none;
     display: none;
 }
 
@@ -236,7 +251,7 @@ a:active
     letter-spacing: 1px;
     line-height: 1.4;
     text-align: left;
-    padding-top: 15%;
+    padding-top: 5%;
     z-index: 1;
 }
 

@@ -293,6 +293,18 @@ export default {
 
     let startEndscreen = function()
     {
+      // hide thread at start
+      $("#faden-text-outro").parent().css("opacity", 0);
+      
+      // display thread after 4 seconds
+      setTimeout(function ()
+      {
+          $("#faden-text-outro").parent().animate({opacity: 1}, 800, function ()
+          {
+              // callback
+          });
+      }, 4000);
+      
       $(".outroWindow").show();
       $(".outroWindow")
       .animate({top: '0'}, 800, function()
