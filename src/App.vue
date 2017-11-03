@@ -123,6 +123,7 @@ export default {
     window.mapThreadPoints = [];
     window.polyLines = [];
     window.infoWindows = [];
+    window.imageSent = false;
 
     let createInfoWindow = function(windowContent)
     {
@@ -300,6 +301,24 @@ export default {
       });
 
       clearInterval(window.mouseMoveTimer);
+
+      if (!window.imageSent)
+      {
+        // fancy shizzle
+        let mousethreadImage = document.getElementById("mouseoverlayCanvas").toDataURL();
+        mousethreadImage = encodeURIComponent(mousethreadImage);
+        
+        $.ajax(
+        {
+          url: "https://dev.thecell.eu/mousethread/galleryFromGit/getAndSavePng.php",
+          type: "POST",
+          data: {"mouseImage": mousethreadImage}
+        }).done(function()
+        {
+          console.log("image sent");
+        });
+        window.imageSent = true;
+      }
     }
 
     if (document.getElementById("toEndScreenBtn"))
