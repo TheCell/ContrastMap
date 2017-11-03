@@ -2,6 +2,8 @@
 
 > studio web mobile project of emmen
 
+It was created over 3 Weeks by @lauragyr and myself
+
 ## Build Setup
 
 ``` bash
@@ -15,4 +17,14 @@ npm run dev
 npm run build
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+# A Youtube video about the Web Project
+https://www.youtube.com/watch?v=C_xBSgg_-Zo
+
+# Mousethread
+The Mousethreading can be visited separately here http://dev.thecell.eu/mousethread/
+
+# Images created by users
+<img src="https://raw.githubusercontent.com/TheCell/devSpace/master/mousethread1.png" alt="Mousethread image" />
+<img src="https://raw.githubusercontent.com/TheCell/devSpace/master/mousethread2.png" alt="Mousethread image" />
+<img src="https://raw.githubusercontent.com/TheCell/devSpace/master/mousethread3.png" alt="Mousethread image" />
+<img src="https://raw.githubusercontent.com/TheCell/devSpace/master/mousethread4.png" alt="Mousethread image" />
