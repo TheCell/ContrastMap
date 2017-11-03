@@ -26,10 +26,12 @@
                         </div>
 
                         <div class="large-7 medium-12 cell">
-                            <p id="faden-text">Zerschneide den Faden</p>
-                            <canvas id="introLineCutCanvas">
-                                too bad your browser died centuries ago
-                        </canvas>
+                            <div>
+                                <p id="faden-text">Zerschneide den Faden</p>
+                                <canvas id="introLineCutCanvas">
+                                        too bad your browser died centuries ago
+                                </canvas>
+                            </div>
                         </div>
 
                     </div>
@@ -71,6 +73,18 @@ export default {
     ctx.moveTo( theLine.x, theLine.y );
     ctx.lineTo( theLine.x2, theLine.y2 );
     ctx.stroke();
+
+    // hide thread at start
+    $("#faden-text").parent().css("opacity", 0);
+    
+    // display thread after 4 seconds
+    setTimeout(function ()
+    {
+        $("#faden-text").parent().animate({opacity: 1}, 800, function ()
+        {
+            // callback
+        });
+    }, 4000);
 
     canvas.onmouseover = function(e)
     {
