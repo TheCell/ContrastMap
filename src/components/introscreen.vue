@@ -30,18 +30,6 @@
                         </div>
                         
 
-                        <div class="large-2 medium-12 cell">
-                        </div>
-
-                         <div class="large-5 medium-12 cell">
-                        </div>
-
-                        <div class="large-5 medium-12 cell">
-                            
-                        </div>
-                        <div class="large-1 medium-12 cell">
-                        </div>
-
                     </div>
                 </div>
             </div>
