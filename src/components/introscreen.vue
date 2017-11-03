@@ -7,10 +7,10 @@
                 <div class="upperPart"></div>
                 <div class="lowerPart">
                     <div class="grid-x grid-padding-x">
-                        <div class="large-7 medium-12 cell">
+                        <div class="large-6 medium-12 cell">
                         </div>
 
-                        <div class="large-4 medium-12 cell">
+                        <div class="large-5 medium-12 cell">
                             <div class="introThreadTitleBox">
                                 <span class="introThreadTitle">
                                 DER ROTE <br> FADEN
