@@ -24,7 +24,7 @@ https://www.youtube.com/watch?v=C_xBSgg_-Zo
 The Mousethreading can be visited separately here http://dev.thecell.eu/mousethread/
 
 # Images created by users
-<img src="https://raw.githubusercontent.com/TheCell/devSpace/master/mousethread1.png" alt="Mousethread image" />
-<img src="https://raw.githubusercontent.com/TheCell/devSpace/master/mousethread2.png" alt="Mousethread image" />
-<img src="https://raw.githubusercontent.com/TheCell/devSpace/master/mousethread3.png" alt="Mousethread image" />
-<img src="https://raw.githubusercontent.com/TheCell/devSpace/master/mousethread4.png" alt="Mousethread image" />
+<img src="https://raw.githubusercontent.com/TheCell/ContrastMap/master/mousethread1.png" alt="Mousethread image" />
+<img src="https://raw.githubusercontent.com/TheCell/ContrastMap/master/mousethread2.png" alt="Mousethread image" />
+<img src="https://raw.githubusercontent.com/TheCell/ContrastMap/master/mousethread3.png" alt="Mousethread image" />
+<img src="https://raw.githubusercontent.com/TheCell/ContrastMap/master/mousethread4.png" alt="Mousethread image" />
