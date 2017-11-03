@@ -7,31 +7,39 @@
                 <div class="upperPart"></div>
                 <div class="lowerPart">
                     <div class="grid-x grid-padding-x">
-                        <div class="large-6 medium-12 cell">
+                         <div class="large-1 medium-12 cell">
+                        </div>
+                        <div class="large-4 medium-12 cell">
+                            <div class="introThreadTitleBox">
+                                <span class="introThreadTitle">
+                                DER ROTE FADEN
+                                </span>
+                            </div>
                         </div>
 
                         <div class="large-5 medium-12 cell">
-                            <div class="introThreadTitleBox">
-                                <span class="introThreadTitle">
-                                DER ROTE <br> FADEN
-                                </span>
-                            </div>
-
                             <p id="intro-text">«Das zieht sich wie ein roter Faden durch die Geschichte», sagt man über ein Leitmotiv, das während eines Geschehens immer weiter fortgesponnen wird. Der Ursprung des roten Fadens findet sich in Goethes Roman: «Wir hören von einer besondern Einrichtung bei der englischen Marine. Sämtliche Tauwerke der königlichen Flotte, vom stärksten bis zum schwächsten, sind dergestalt gesponnen, dass ein roter Faden durch das Ganze durchgeht, den man nicht herauswinden kann, ohne alles aufzulösen, und woran auch die kleinsten Stücke kenntlich sind, dass sie der Krone gehören. Ebenso zieht sich durch Ottiliens Tagebuch ein Faden der Neigung und Anhänglichkeit, der alles verbindet und das Ganze bezeichnet.» <span id="italic">(Goethe, «Die Wahlverwandschaften», 1809)</span></p>
-                        </div>
-                        <div class="large-1 medium-12 cell">
-                        </div>
-
-                        <div class="large-1 medium-12 cell">
-                        </div>
-
-                        <div class="large-7 medium-12 cell">
+                            <div style="height: 7vh"></div>
+                            
                             <div>
                                 <p id="faden-text">Zerschneide den Faden</p>
                                 <canvas id="introLineCutCanvas">
                                         too bad your browser died centuries ago
                                 </canvas>
                             </div>
+                        </div>
+                        
+
+                        <div class="large-2 medium-12 cell">
+                        </div>
+
+                         <div class="large-5 medium-12 cell">
+                        </div>
+
+                        <div class="large-5 medium-12 cell">
+                            
+                        </div>
+                        <div class="large-1 medium-12 cell">
                         </div>
 
                     </div>

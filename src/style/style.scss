@@ -141,7 +141,7 @@ a:active
 
 .lowerPart
 {
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0,0,0,0.7);
     min-height: 60vh;
 }
 
@@ -153,7 +153,7 @@ a:active
     letter-spacing: 1px;
     line-height: 1.4;
     text-align: left;
-    padding-top: 3%;
+    padding-top: 25px;
     font-size: 15px;
 }
 
@@ -178,17 +178,21 @@ a:active
     font-family: 'Titillium Web', sans-serif;
     font-weight: 700;
     line-height: 1;
+    color: $conceptRed;
+
 }
 
 .introThreadTitleBox
 {
-    background-color: $conceptRed;
-    padding: 12px 14px;
-    font-size: 93px;
+   /* background-color: $conceptRed;*/
+    /*padding: 12px 14px;*/
+    font-size: 120px;
+    padding-top: 20px;
     line-height: 0;
-    margin-top: -92px;
-    min-width: 440px;
-    max-width: 460px;
+   /* margin-top: -92px;*/
+    /*min-width: 440px;
+    max-width: 460px;*/
+    text-align: right;
 }
 
 /* outro window */
