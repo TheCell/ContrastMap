@@ -1,7 +1,7 @@
 @import '../../node_modules/snazzy-info-window/dist/snazzy-info-window.scss';
 
 $conceptRed: #ff0024;
-$conceptGray: #cacfd6;
+$conceptGray: rgb(202, 207, 214);
 $conceptDarkGray: #565656;
 $conceptBlack: #000000;
 $conceptWhite: #ffffff;
@@ -82,7 +82,8 @@ a:active
 
 .linenamesWindow
 {
-    background-color: $conceptGray;
+    background-color: rgba(0, 0, 0,0.7);
+    color: white;
     padding: 5px;
     padding-left: 20px;
     padding-right: 20px;
