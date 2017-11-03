@@ -7,7 +7,7 @@
                 <div class="upperPart"></div>
                 <div class="lowerPart">
                     <div class="grid-x grid-padding-x">
-                         <div class="large-1 medium-12 cell">
+                         <div class="large-2 medium-12 cell">
                         </div>
                         <div class="large-4 medium-12 cell">
                             <div class="introThreadTitleBox">
@@ -29,7 +29,6 @@
                             </div>
                         </div>
                         
-
                     </div>
                 </div>
             </div>
