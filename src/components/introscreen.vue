@@ -2,7 +2,7 @@
     <div class="introWindow">
         <!-- <div class="introLineCutAnim"> -->
         <div>
-            <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,600,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300,300i,400,600,700" rel="stylesheet">
             <div class="grid-container">
                 <div class="upperPart"></div>
                 <div class="lowerPart">
@@ -17,7 +17,7 @@
                                 </span>
                             </div>
 
-                            <p id="intro-text">«Wir hören von einer besondern Einrichtung bei der englischen Marine. Sämtliche Tauwerke der königlichen Flotte, vom stärksten bis zum schwächsten, sind dergestalt gesponnen, dass ein roter Faden durch das Ganze durchgeht, den man nicht herauswinden kann, ohne alles aufzulösen, und woran auch die kleinsten Stücke kenntlich sind, dass sie der Krone gehören. Ebenso zieht sich durch Ottiliens Tagebuch ein Faden der Neigung und Anhänglichkeit, der alles verbindet und das Ganze bezeichnet.»</p>
+                            <p id="intro-text">«Das zieht sich wie ein roter Faden durch die Geschichte», sagt man über ein Leitmotiv, das während eines Geschehens immer weiter fortgesponnen wird. Der Ursprung des roten Fadens findet sich in Goethes Roman: «Wir hören von einer besondern Einrichtung bei der englischen Marine. Sämtliche Tauwerke der königlichen Flotte, vom stärksten bis zum schwächsten, sind dergestalt gesponnen, dass ein roter Faden durch das Ganze durchgeht, den man nicht herauswinden kann, ohne alles aufzulösen, und woran auch die kleinsten Stücke kenntlich sind, dass sie der Krone gehören. Ebenso zieht sich durch Ottiliens Tagebuch ein Faden der Neigung und Anhänglichkeit, der alles verbindet und das Ganze bezeichnet.» <span id="italic">(Goethe, «Die Wahlverwandschaften», 1809)</span></p>
                         </div>
                         <div class="large-1 medium-12 cell">
                         </div>

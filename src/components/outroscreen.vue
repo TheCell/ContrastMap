@@ -8,7 +8,7 @@
                 </div>
 
                 <div class="large-3 medium-3 cell">
-                    <p id="outro-text">Dadurch, dass du die Fäden zerschnitten hast, ist ein wunderschönes neues Fadengespann entstanden. Somit hast du deinen eigenen roten Faden durch die Viscosistadt gezogen. Beim nächsten Besuch wird das Muster sicher wieder völlig anders aussehen – ein einzigartiges Muster, das du da gesponnen hast.</p>
+                    <p id="outro-text">Alle Fäden der Viscosistadt wurden zerschnitten und der rote Faden somit komplett aufgelöst. Dadurch ist jedoch ein wunderschönes neues Fadengespann entstanden, womit du deinen eigenen roten Faden gezogen hast. Beim nächsten Mal wird das Gewobene bestimmt wieder anders aussehen – ein einzigartiges Muster – jedes Mal ein neuer Weg durch die Viscosistadt.</p>
                 </div>
                 <div class="large-1 medium-1 cell">
                 </div>
